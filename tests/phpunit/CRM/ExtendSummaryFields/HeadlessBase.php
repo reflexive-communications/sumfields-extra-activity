@@ -15,9 +15,9 @@ class CRM_ExtendSummaryFields_HeadlessBase extends \PHPUnit\Framework\TestCase i
     public function setUpHeadless()
     {
         return \Civi\Test::headless()
-            ->install('net.ourpowerbase.sumfields')
             ->install('rc-base')
             ->installMe(__DIR__)
+            ->install('net.ourpowerbase.sumfields')
             ->apply();
     }
 
@@ -31,9 +31,9 @@ class CRM_ExtendSummaryFields_HeadlessBase extends \PHPUnit\Framework\TestCase i
     {
         // Resets DB and install depended extension
         \Civi\Test::headless()
-            ->install('net.ourpowerbase.sumfields')
             ->install('rc-base')
             ->installMe(__DIR__)
+            ->install('net.ourpowerbase.sumfields')
             ->apply(true);
     }
 
