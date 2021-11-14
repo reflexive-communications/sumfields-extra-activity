@@ -60,5 +60,4 @@ class CRM_ExtendSummaryFields_HeadlessBase extends \PHPUnit\Framework\TestCase i
     {
         parent::tearDown();
     }
-
 }

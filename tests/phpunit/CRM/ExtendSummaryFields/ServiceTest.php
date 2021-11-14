@@ -28,12 +28,13 @@ class CRM_ExtendSummaryFields_ServiceTest extends CRM_ExtendSummaryFields_Headle
      */
     public function testBuildFormDoesNothingWhenTheFormIsIrrelevant()
     {
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::buildForm('irrelevant-form-name', new CRM_Sumfields_Form_SumFields()));
+        $form = new CRM_Sumfields_Form_SumFields();
+        self::assertEmpty(CRM_ExtendSummaryFields_Service::buildForm('irrelevant-form-name', $form));
     }
     public function testBuildForm()
     {
         $form = new CRM_Sumfields_Form_SumFields();
-        $form->setVar('fieldsets', []);
+        $form->assign('fieldsets', []);
         self::assertEmpty(CRM_ExtendSummaryFields_Service::buildForm(CRM_Sumfields_Form_SumFields::class, $form));
         self::assertEmpty(CRM_ExtendSummaryFields_Service::buildForm('Not_Relevant_Class_Name', $form));
     }
@@ -42,15 +43,19 @@ class CRM_ExtendSummaryFields_ServiceTest extends CRM_ExtendSummaryFields_Headle
      */
     public function testPostProcessDoesNothingWhenTheFormIsIrrelevant()
     {
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::postProcess('irrelevant-form-name', new CRM_Sumfields_Form_SumFields()));
+        $form = new CRM_Sumfields_Form_SumFields();
+        self::assertEmpty(CRM_ExtendSummaryFields_Service::postProcess('irrelevant-form-name', $form));
     }
     public function testPostProcessNotOnSubmit()
     {
         $form = new CRM_Sumfields_Form_SumFields();
-        $form->setVar('when_to_apply_change', 'later');
-        $form->setVar('extend_summary_fields_activity_type_ids', []);
-        $form->setVar('extend_summary_fields_activity_status_ids', []);
-        $form->setVar('extend_summary_fields_record_type_id', []);
+        $submit = [
+            'when_to_apply_change' => 'later',
+            'extend_summary_fields_activity_type_ids' => [],
+            'extend_summary_fields_activity_status_ids' => [],
+            'extend_summary_fields_record_type_id' => [],
+        ];
+        $form->setVar('_submitValues', $submit);
         self::assertEmpty(CRM_ExtendSummaryFields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
     }
     public function testPostProcessOnSubmit()
@@ -59,13 +64,17 @@ class CRM_ExtendSummaryFields_ServiceTest extends CRM_ExtendSummaryFields_Headle
         $expectedActivityTypeIds = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'));
         $expectedActivityStatusIds = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'));
         $expectedContactRecortId = [array_keys(CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'))[0]];
-        $form->setVar('when_to_apply_change', 'on_submit');
-        $form->setVar('extend_summary_fields_activity_type_ids', $expectedActivityTypeIds);
-        $form->setVar('extend_summary_fields_activity_status_ids', $expectedActivityStatusIds);
-        $form->setVar('extend_summary_fields_record_type_id', $expectedContactRecortId);
+        $submit = [
+            'when_to_apply_change' => 'on_submit',
+            'extend_summary_fields_activity_type_ids' => $expectedActivityTypeIds,
+            'extend_summary_fields_activity_status_ids' => $expectedActivityStatusIds,
+            'extend_summary_fields_record_type_id' => $expectedContactRecortId,
+        ];
+        $form->setVar('_submitValues', $submit);
         self::assertEmpty(CRM_ExtendSummaryFields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
-        self::assertSame($expectedActivityTypeIds, sumfields_get_setting('extend_summary_fields_activity_type_ids'));
-        self::assertSame($expectedActivityStatusIds, sumfields_get_setting('extend_summary_fields_activity_status_ids'));
-        self::assertSame($expectedContactRecortId, sumfields_get_setting('extend_summary_fields_record_type_id'));
+        $config = new CRM_ExtendSummaryFields_Config(E::LONG_NAME);
+        self::assertSame($expectedActivityTypeIds, $config->getSetting('extend_summary_fields_activity_type_ids'));
+        self::assertSame($expectedActivityStatusIds, $config->getSetting('extend_summary_fields_activity_status_ids'));
+        self::assertSame($expectedContactRecortId, $config->getSetting('extend_summary_fields_record_type_id'));
     }
 }
