@@ -8,6 +8,14 @@
   <filter>
     <whitelist>
       <directory suffix=".php">./</directory>
+      <exclude>
+        <!-- Skip the test directory -->
+        <directory>./tests</directory>
+        <!-- Skip the generated files -->
+        <file>./extend_summary_fields.php</file>
+        <file>./extend_summary_fields.civix.php</file>
+        <file>./CRM/ExtendSummaryFields/Upgrader/Base.php</file>
+      </exclude>
     </whitelist>
   </filter>
   <listeners>
