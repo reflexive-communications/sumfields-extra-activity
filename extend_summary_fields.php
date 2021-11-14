@@ -3,6 +3,7 @@
 require_once 'extend_summary_fields.civix.php';
 // phpcs:disable
 use CRM_ExtendSummaryFields_ExtensionUtil as E;
+
 // phpcs:enable
 
 /**
@@ -10,8 +11,9 @@ use CRM_ExtendSummaryFields_ExtensionUtil as E;
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
  */
-function extend_summary_fields_civicrm_config(&$config) {
-  _extend_summary_fields_civix_civicrm_config($config);
+function extend_summary_fields_civicrm_config(&$config)
+{
+    _extend_summary_fields_civix_civicrm_config($config);
 }
 
 /**
@@ -19,8 +21,9 @@ function extend_summary_fields_civicrm_config(&$config) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
  */
-function extend_summary_fields_civicrm_xmlMenu(&$files) {
-  _extend_summary_fields_civix_civicrm_xmlMenu($files);
+function extend_summary_fields_civicrm_xmlMenu(&$files)
+{
+    _extend_summary_fields_civix_civicrm_xmlMenu($files);
 }
 
 /**
@@ -28,8 +31,9 @@ function extend_summary_fields_civicrm_xmlMenu(&$files) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
-function extend_summary_fields_civicrm_install() {
-  _extend_summary_fields_civix_civicrm_install();
+function extend_summary_fields_civicrm_install()
+{
+    _extend_summary_fields_civix_civicrm_install();
 }
 
 /**
@@ -37,8 +41,9 @@ function extend_summary_fields_civicrm_install() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
  */
-function extend_summary_fields_civicrm_postInstall() {
-  _extend_summary_fields_civix_civicrm_postInstall();
+function extend_summary_fields_civicrm_postInstall()
+{
+    _extend_summary_fields_civix_civicrm_postInstall();
 }
 
 /**
@@ -46,8 +51,9 @@ function extend_summary_fields_civicrm_postInstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
  */
-function extend_summary_fields_civicrm_uninstall() {
-  _extend_summary_fields_civix_civicrm_uninstall();
+function extend_summary_fields_civicrm_uninstall()
+{
+    _extend_summary_fields_civix_civicrm_uninstall();
 }
 
 /**
@@ -55,8 +61,9 @@ function extend_summary_fields_civicrm_uninstall() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_enable
  */
-function extend_summary_fields_civicrm_enable() {
-  _extend_summary_fields_civix_civicrm_enable();
+function extend_summary_fields_civicrm_enable()
+{
+    _extend_summary_fields_civix_civicrm_enable();
 }
 
 /**
@@ -64,8 +71,9 @@ function extend_summary_fields_civicrm_enable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
  */
-function extend_summary_fields_civicrm_disable() {
-  _extend_summary_fields_civix_civicrm_disable();
+function extend_summary_fields_civicrm_disable()
+{
+    _extend_summary_fields_civix_civicrm_disable();
 }
 
 /**
@@ -73,8 +81,9 @@ function extend_summary_fields_civicrm_disable() {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
  */
-function extend_summary_fields_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _extend_summary_fields_civix_civicrm_upgrade($op, $queue);
+function extend_summary_fields_civicrm_upgrade($op, CRM_Queue_Queue $queue = null)
+{
+    return _extend_summary_fields_civix_civicrm_upgrade($op, $queue);
 }
 
 /**
@@ -85,8 +94,9 @@ function extend_summary_fields_civicrm_upgrade($op, CRM_Queue_Queue $queue = NUL
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
  */
-function extend_summary_fields_civicrm_managed(&$entities) {
-  _extend_summary_fields_civix_civicrm_managed($entities);
+function extend_summary_fields_civicrm_managed(&$entities)
+{
+    _extend_summary_fields_civix_civicrm_managed($entities);
 }
 
 /**
@@ -98,8 +108,9 @@ function extend_summary_fields_civicrm_managed(&$entities) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
  */
-function extend_summary_fields_civicrm_caseTypes(&$caseTypes) {
-  _extend_summary_fields_civix_civicrm_caseTypes($caseTypes);
+function extend_summary_fields_civicrm_caseTypes(&$caseTypes)
+{
+    _extend_summary_fields_civix_civicrm_caseTypes($caseTypes);
 }
 
 /**
@@ -112,8 +123,9 @@ function extend_summary_fields_civicrm_caseTypes(&$caseTypes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
  */
-function extend_summary_fields_civicrm_angularModules(&$angularModules) {
-  _extend_summary_fields_civix_civicrm_angularModules($angularModules);
+function extend_summary_fields_civicrm_angularModules(&$angularModules)
+{
+    _extend_summary_fields_civix_civicrm_angularModules($angularModules);
 }
 
 /**
@@ -121,8 +133,9 @@ function extend_summary_fields_civicrm_angularModules(&$angularModules) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
  */
-function extend_summary_fields_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _extend_summary_fields_civix_civicrm_alterSettingsFolders($metaDataFolders);
+function extend_summary_fields_civicrm_alterSettingsFolders(&$metaDataFolders = null)
+{
+    _extend_summary_fields_civix_civicrm_alterSettingsFolders($metaDataFolders);
 }
 
 /**
@@ -132,15 +145,17 @@ function extend_summary_fields_civicrm_alterSettingsFolders(&$metaDataFolders = 
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
  */
-function extend_summary_fields_civicrm_entityTypes(&$entityTypes) {
-  _extend_summary_fields_civix_civicrm_entityTypes($entityTypes);
+function extend_summary_fields_civicrm_entityTypes(&$entityTypes)
+{
+    _extend_summary_fields_civix_civicrm_entityTypes($entityTypes);
 }
 
 /**
  * Implements hook_civicrm_themes().
  */
-function extend_summary_fields_civicrm_themes(&$themes) {
-  _extend_summary_fields_civix_civicrm_themes($themes);
+function extend_summary_fields_civicrm_themes(&$themes)
+{
+    _extend_summary_fields_civix_civicrm_themes($themes);
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
@@ -175,7 +190,8 @@ function extend_summary_fields_civicrm_themes(&$themes) {
 /**
  * Implements hook_civicrm_sumfields_definitions()
  */
-function extend_summary_fields_civicrm_sumfields_definitions(&$custom) {
+function extend_summary_fields_civicrm_sumfields_definitions(&$custom)
+{
     CRM_ExtendSummaryFields_Service::sumfieldsDefinition($custom);
 }
 /**
@@ -183,7 +199,8 @@ function extend_summary_fields_civicrm_sumfields_definitions(&$custom) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_buildForm
  */
-function extend_summary_fields_civicrm_buildForm($formName, &$form) {
+function extend_summary_fields_civicrm_buildForm($formName, &$form)
+{
     CRM_ExtendSummaryFields_Service::buildForm($formName, $form);
 }
 /**
@@ -191,6 +208,7 @@ function extend_summary_fields_civicrm_buildForm($formName, &$form) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postProcess
  */
-function extend_summary_fields_civicrm_postProcess($formName, &$form) {
+function extend_summary_fields_civicrm_postProcess($formName, &$form)
+{
     CRM_ExtendSummaryFields_Service::postProcess($formName, $form);
 }
