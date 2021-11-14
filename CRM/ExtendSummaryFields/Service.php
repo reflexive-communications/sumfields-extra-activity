@@ -47,6 +47,7 @@ class CRM_ExtendSummaryFields_Service
         if ($formName !== 'CRM_Sumfields_Form_SumFields') {
             return;
         }
+        $settings = new CRM_ExtendSummaryFields_Config(E::LONG_NAME);
         $labels = [
             'activity-type' => E::ts('Activity Types'),
             'activity-type-desc' => E::ts('Activity types to be used when calculating activity summary fields.'),
@@ -72,9 +73,9 @@ class CRM_ExtendSummaryFields_Service
         $fieldsets[$custom['optgroups']['extend_summary_fields']['fieldset']]['extend_summary_fields_record_type_id'] = $labels['contact-record-type-desc'];
         // Set defaults.
         $form->setDefaults([
-            'extend_summary_fields_activity_type_ids' => sumfields_get_setting('extend_summary_fields_activity_type_ids'),
-            'extend_summary_fields_activity_status_ids' => sumfields_get_setting('extend_summary_fields_activity_status_ids'),
-            'extend_summary_fields_record_type_id' => sumfields_get_setting('extend_summary_fields_record_type_id'),
+            'extend_summary_fields_activity_type_ids' => $settings->getSetting('extend_summary_fields_activity_type_ids'),
+            'extend_summary_fields_activity_status_ids' => $settings->getSetting('extend_summary_fields_activity_status_ids'),
+            'extend_summary_fields_record_type_id' => $settings->getSetting('extend_summary_fields_record_type_id'),
         ]);
 
         $form->assign('fieldsets', $fieldsets);
@@ -89,9 +90,10 @@ class CRM_ExtendSummaryFields_Service
     {
         if ($formName == 'CRM_Sumfields_Form_SumFields') {
             // Save option fields as submitted.
-            sumfields_save_setting('extend_summary_fields_activity_type_ids', CRM_Utils_Array::value('extend_summary_fields_activity_type_ids', $form->_submitValues));
-            sumfields_save_setting('extend_summary_fields_activity_status_ids', CRM_Utils_Array::value('extend_summary_fields_activity_status_ids', $form->_submitValues));
-            sumfields_save_setting('extend_summary_fields_record_type_id', CRM_Utils_Array::value('extend_summary_fields_record_type_id', $form->_submitValues));
+            $settings = new CRM_ExtendSummaryFields_Config(E::LONG_NAME);
+            $settings->updateSetting('extend_summary_fields_activity_type_ids', CRM_Utils_Array::value('extend_summary_fields_activity_type_ids', $form->_submitValues));
+            $settings->updateSetting('extend_summary_fields_activity_status_ids', CRM_Utils_Array::value('extend_summary_fields_activity_status_ids', $form->_submitValues));
+            $settings->updateSetting('extend_summary_fields_record_type_id', CRM_Utils_Array::value('extend_summary_fields_record_type_id', $form->_submitValues));
 
             if ($form->_submitValues['when_to_apply_change'] == 'on_submit') {
                 $returnValues = [];
@@ -107,27 +109,28 @@ class CRM_ExtendSummaryFields_Service
      */
     private static function rewriteSql($sql): string
     {
+        $settings = new CRM_ExtendSummaryFields_Config(E::LONG_NAME);
         // Note: most of these token replacements fill in a sql IN statement,
         // e.g. field_name IN (%token). That means if the token is empty, we
         // get a SQL error. So... for each of these, if the token is empty,
         // we fill it with all possible values at the moment. If a new option
         // is added, summary fields will have to be re-configured.
 
-        $ids = sumfields_get_setting('extend_summary_fields_activity_type_ids', []);
+        $ids = $settings->getSetting('extend_summary_fields_activity_type_ids');
         if (count($ids) == 0) {
             $ids = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'));
         }
         $str_ids = implode(',', $ids);
         $sql = str_replace('%extend_summary_fields_activity_type_ids', $str_ids, $sql);
 
-        $ids = sumfields_get_setting('extend_summary_fields_activity_status_ids', []);
+        $ids = $settings->getSetting('extend_summary_fields_activity_status_ids');
         if (count($ids) == 0) {
             $ids = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'));
         }
         $str_ids = implode(',', $ids);
         $sql = str_replace('%extend_summary_fields_activity_status_ids', $str_ids, $sql);
 
-        $ids = sumfields_get_setting('extend_summary_fields_record_type_id', []);
+        $ids = $settings->getSetting('extend_summary_fields_record_type_id');
         if (count($ids) == 0) {
             $ids = ['2'];
         }
