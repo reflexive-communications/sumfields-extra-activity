@@ -171,124 +171,26 @@ function extend_summary_fields_civicrm_themes(&$themes) {
 //  _extend_summary_fields_civix_navigationMenu($menu);
 //}
 
+// The functions below are implemented by me.
 /**
  * Implements hook_civicrm_sumfields_definitions()
- *
- * Change "mycustom" to the name of your own extension.
  */
 function extend_summary_fields_civicrm_sumfields_definitions(&$custom) {
-    $days = ['30', '60', '90', '180', '365', '730'];
-    foreach ($days as $day) {
-        $custom['fields']['number_of_activities_'.$day] = [
-            // Choose which group you want this field to appear with.
-            'optgroup' => 'extend_summary_fields', // could just add this to the existing "fundraising" optgroup
-            'label' => 'The number of activities in the last '.$day.' days',
-            'data_type' => 'Integer',
-            'html_type' => 'Text',
-            'weight' => '15',
-            'text_length' => '32',
-            // A change in the "trigger_table" should cause the field to be re-calculated.
-            'trigger_table' => 'civicrm_activity_contact',
-            // A parentheses enclosed SQL statement with a function to ensure a single
-            // value is returned. The value should be restricted to a single
-            // contact_id using the NEW.contact_id field
-            'trigger_sql' => _rewrite_sql('(
-                SELECT COALESCE(COUNT(1), 0)
-                FROM civicrm_activity_contact ac
-                LEFT JOIN civicrm_activity a ON a.id = ac.activity_id
-                WHERE ac.contact_id = NEW.contact_id
-                AND ac.record_type_id = %extend_summary_fields_record_type_id
-                AND a.activity_type_id IN (%extend_summary_fields_activity_type_ids)
-                AND a.status_id IN (%extend_summary_fields_activity_status_ids)
-                AND a.activity_date_time >= DATE_SUB(CURDATE(), INTERVAL '.$day.' DAY)
-            )'),
-        ];
-    }
-    // If we don't want to add our fields to the existing optgroups or fieldsets on the admin form,
-    // we can make new ones
-    $custom['optgroups']['extend_summary_fields'] = [
-        'title' => 'Number of activities',
-        'fieldset' => 'Activities', // Could add this to an existing fieldset by naming it here
-        'component' => 'CiviCampaign',
-    ];
+    CRM_ExtendSummaryFields_Service::sumfieldsDefinition($custom);
 }
+/**
+ * Implements hook_civicrm_buildForm().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_buildForm
+ */
 function extend_summary_fields_civicrm_buildForm($formName, &$form) {
-  if ($formName == 'CRM_Sumfields_Form_SumFields') {
-    $tpl = CRM_Core_Smarty::singleton();
-    $fieldsets = $tpl->_tpl_vars['fieldsets'];
-
-    // Get jsumfields definitions, because we need the fieldset names as a target
-    // for where to insert our option fields
-    $custom = [];
-    extend_summary_fields_civicrm_sumfields_definitions($custom);
-
-    // Create a field for Financial Types on related contributions.
-    $label = E::ts('Activity Types');
-    $form->add('select', 'extend_summary_fields_activity_type_ids', $label, CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'), false, ['multiple' => true, 'class' => 'crm-select2 huge']);
-    $form->add('select', 'extend_summary_fields_activity_status_ids', $label, CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'), false, ['multiple' => true, 'class' => 'crm-select2 huge']);
-    $form->add('select', 'extend_summary_fields_record_type_id', $label, CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'), false, ['multiple' => false, 'class' => 'crm-select2 huge']);
-    $fieldsets[$custom['optgroups']['extend_summary_fields']['fieldset']]['extend_summary_fields_activity_type_ids'] = E::ts('Activity types to be used when calculating activity summary fields.');
-    $fieldsets[$custom['optgroups']['extend_summary_fields']['fieldset']]['extend_summary_fields_activity_status_ids'] = E::ts('Activity statuses to be used when calculating activity summary fields.');
-    $fieldsets[$custom['optgroups']['extend_summary_fields']['fieldset']]['extend_summary_fields_record_type_id'] = E::ts('Recory type to be used when calculating activity summary fields.');
-    // Set defaults.
-    $form->setDefaults([
-        'extend_summary_fields_activity_type_ids' => sumfields_get_setting('extend_summary_fields_activity_type_ids'),
-        'extend_summary_fields_activity_status_ids' => sumfields_get_setting('extend_summary_fields_activity_status_ids'),
-        'extend_summary_fields_record_type_id' => sumfields_get_setting('extend_summary_fields_record_type_id'),
-    ]);
-
-    $form->assign('fieldsets', $fieldsets);
-  }
+    CRM_ExtendSummaryFields_Service::buildForm($formName, $form);
 }
 /**
  * Implements hook_civicrm_postProcess().
+ *
+ * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postProcess
  */
 function extend_summary_fields_civicrm_postProcess($formName, &$form) {
-    if ($formName == 'CRM_Sumfields_Form_SumFields') {
-        // Save option fields as submitted.
-        sumfields_save_setting('extend_summary_fields_activity_type_ids', CRM_Utils_Array::value('extend_summary_fields_activity_type_ids', $form->_submitValues));
-        sumfields_save_setting('extend_summary_fields_activity_status_ids', CRM_Utils_Array::value('extend_summary_fields_activity_status_ids', $form->_submitValues));
-        sumfields_save_setting('extend_summary_fields_record_type_id', CRM_Utils_Array::value('extend_summary_fields_record_type_id', $form->_submitValues));
-
-        if ($form->_submitValues['when_to_apply_change'] == 'on_submit') {
-            $returnValues = [];
-            sumfields_gen_data($returnValues);
-        }
-    }
-}
-
-/**
- * Replace jsumfields %variables with the appropriate values. NOTE: this function
- * does NOT call jsumfields_sql_rewrite().
- *
- * @return string Modified $sql.
- */
-function _rewrite_sql($sql) {
-    // Note: most of these token replacements fill in a sql IN statement,
-    // e.g. field_name IN (%token). That means if the token is empty, we
-    // get a SQL error. So... for each of these, if the token is empty,
-    // we fill it with all possible values at the moment. If a new option
-    // is added, summary fields will have to be re-configured.
-
-    $ids = sumfields_get_setting('extend_summary_fields_activity_type_ids', []);
-    if (count($ids) == 0) {
-        $ids = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'));
-    }
-    $str_ids = implode(',', $ids);
-    $sql = str_replace('%extend_summary_fields_activity_type_ids', $str_ids, $sql);
-
-    $ids = sumfields_get_setting('extend_summary_fields_activity_status_ids', []);
-    if (count($ids) == 0) {
-        $ids = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'));
-    }
-    $str_ids = implode(',', $ids);
-    $sql = str_replace('%extend_summary_fields_activity_status_ids', $str_ids, $sql);
-
-    $ids = sumfields_get_setting('extend_summary_fields_record_type_id', []);
-    if (count($ids) == 0) {
-        $ids = ['2'];
-    }
-    $sql = str_replace('%extend_summary_fields_record_type_id', $ids[0], $sql);
-
-    return $sql;
+    CRM_ExtendSummaryFields_Service::postProcess($formName, $form);
 }
