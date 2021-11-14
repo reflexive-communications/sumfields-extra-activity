@@ -39,7 +39,6 @@ class CRM_ExtendSummaryFields_Service
         $custom['optgroups']['extend_summary_fields'] = [
             'title' => 'Number of activities',
             'fieldset' => 'Activities',
-            'component' => 'CiviCampaign',
         ];
     }
     public static function buildForm($formName, &$form)
