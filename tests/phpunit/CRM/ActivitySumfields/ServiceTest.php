@@ -75,6 +75,6 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
         $config = new CRM_ActivitySumfields_Config(E::LONG_NAME);
         self::assertSame($expectedActivityTypeIds, $config->getSetting('activity_sumfields_activity_type_ids'));
         self::assertSame($expectedActivityStatusIds, $config->getSetting('activity_sumfields_activity_status_ids'));
-        self::assertSame($expectedContactRecortId, $config->getSetting('activity_sumfields_record_type_id'));
+        self::assertSame([$expectedContactRecortId], $config->getSetting('activity_sumfields_record_type_id'));
     }
 }
