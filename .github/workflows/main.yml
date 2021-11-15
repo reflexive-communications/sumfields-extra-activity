@@ -96,12 +96,12 @@ jobs:
       uses: actions/checkout@v2
       with:
           repository: progressivetech/net.ourpowerbase.sumfields
-          path: net.ourpowerbase.sumfield
+          path: net.ourpowerbase.sumfields
 
     - name: Move dependencies to the extensions directory.
       run: |
           sudo mv rc-base ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext"
-          sudo mv net.ourpowerbase.sumfield ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext"
+          sudo mv net.ourpowerbase.sumfields ${{ env.LOCAL_DEPLOY_TARGET }}"/"${{ env.SITE_NAME }}"/web/sites/default/files/civicrm/ext"
 
     - name: Check out the code
       uses: actions/checkout@v2
