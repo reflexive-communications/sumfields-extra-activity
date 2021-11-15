@@ -92,9 +92,9 @@ jobs:
           repository: reflexive-communications/rc-base
           path: rc-base
 
-     - name: Get net.ourpowerbase.sumfields as it is required for this.
-        uses: actions/checkout@v2
-        with:
+    - name: Get net.ourpowerbase.sumfields as it is required for this.
+      uses: actions/checkout@v2
+      with:
           repository: progressivetech/net.ourpowerbase.sumfields
           path: net.ourpowerbase.sumfield
 
