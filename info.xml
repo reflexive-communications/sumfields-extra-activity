@@ -1,26 +1,30 @@
 <?xml version="1.0"?>
 <extension key="activity-sumfields" type="module">
   <file>activity_sumfields</file>
-  <name>FIXME</name>
-  <description>FIXME</description>
+  <name>Summary Fields for Activities</name>
+  <description>Summary fields for the number of activities.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>akosgarai</author>
     <email>szlem01@gmail.com</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">http://FIXME</url>
-    <url desc="Documentation">http://FIXME</url>
-    <url desc="Support">http://FIXME</url>
+    <url desc="Main Extension Page">https://github.com/reflexive-communications/activity-sumfields</url>
+    <url desc="Documentation">https://github.com/reflexive-communications/activity-sumfields</url>
+    <url desc="Support">https://github.com/reflexive-communications/activity-sumfields/issues</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2021-10-04</releaseDate>
-  <version>1.0</version>
-  <develStage>alpha</develStage>
+  <releaseDate>2021-11-15</releaseDate>
+  <version>1.0.0</version>
+  <develStage>stable</develStage>
   <compatibility>
     <ver>5.0</ver>
   </compatibility>
-  <comments>This is a new, undeveloped module</comments>
+  <requires>
+    <ext>net.ourpowerbase.sumfields</ext>
+    <ext>rc-base</ext>
+  </requires>
+  <comments>Summary fields for the number of activities.</comments>
   <classloader>
     <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
