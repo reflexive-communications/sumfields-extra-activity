@@ -1,16 +1,16 @@
 <?php
 
 // AUTO-GENERATED FILE -- Civix may overwrite any changes made to this file
-use CRM_ExtendSummaryFields_ExtensionUtil as E;
+use CRM_ActivitySumfields_ExtensionUtil as E;
 
 /**
  * Base class which provides helpers to execute upgrade logic
  */
-class CRM_ExtendSummaryFields_Upgrader_Base
+class CRM_ActivitySumfields_Upgrader_Base
 {
 
   /**
-   * @var CRM_ExtendSummaryFields_Upgrader_Base
+   * @var CRM_ActivitySumfields_Upgrader_Base
    */
     public static $instance;
 
@@ -49,8 +49,8 @@ class CRM_ExtendSummaryFields_Upgrader_Base
     public static function instance()
     {
         if (!self::$instance) {
-            self::$instance = new CRM_ExtendSummaryFields_Upgrader(
-                'extend-summary-fields',
+            self::$instance = new CRM_ActivitySumfields_Upgrader(
+                'activity-sumfields',
                 E::path()
             );
         }
@@ -64,7 +64,7 @@ class CRM_ExtendSummaryFields_Upgrader_Base
      * task-context; otherwise, this will be non-reentrant.
      *
      * ```
-     * CRM_ExtendSummaryFields_Upgrader_Base::_queueAdapter($ctx, 'methodName', 'arg1', 'arg2');
+     * CRM_ActivitySumfields_Upgrader_Base::_queueAdapter($ctx, 'methodName', 'arg1', 'arg2');
      * ```
      */
     public static function _queueAdapter()
@@ -78,7 +78,7 @@ class CRM_ExtendSummaryFields_Upgrader_Base
     }
 
     /**
-     * CRM_ExtendSummaryFields_Upgrader_Base constructor.
+     * CRM_ActivitySumfields_Upgrader_Base constructor.
      *
      * @param $extensionName
      * @param $extensionDir

@@ -1,13 +1,13 @@
 <?php
 
-use CRM_ExtendSummaryFields_ExtensionUtil as E;
+use CRM_ActivitySumfields_ExtensionUtil as E;
 
 /**
  * Testcases for Service class.
  *
  * @group headless
  */
-class CRM_ExtendSummaryFields_ServiceTest extends CRM_ExtendSummaryFields_HeadlessBase
+class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBase
 {
     /*
      * It tests the sumfieldsDefinition function.
@@ -15,13 +15,13 @@ class CRM_ExtendSummaryFields_ServiceTest extends CRM_ExtendSummaryFields_Headle
     public function testSumfieldsDefinition()
     {
         $definitions = [];
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::sumfieldsDefinition($definitions));
+        self::assertEmpty(CRM_ActivitySumfields_Service::sumfieldsDefinition($definitions));
         // the definition list has to be extended.
         self::assertTrue(array_key_exists('fields', $definitions));
         self::assertTrue(array_key_exists('optgroups', $definitions));
         self::assertCount(6, $definitions['fields']);
         self::assertCount(1, $definitions['optgroups']);
-        self::assertTrue(array_key_exists('extend_summary_fields', $definitions['optgroups']));
+        self::assertTrue(array_key_exists('activity_sumfields', $definitions['optgroups']));
     }
     /*
      * It tests the buildForm function.
@@ -29,14 +29,14 @@ class CRM_ExtendSummaryFields_ServiceTest extends CRM_ExtendSummaryFields_Headle
     public function testBuildFormDoesNothingWhenTheFormIsIrrelevant()
     {
         $form = new CRM_Sumfields_Form_SumFields();
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::buildForm('irrelevant-form-name', $form));
+        self::assertEmpty(CRM_ActivitySumfields_Service::buildForm('irrelevant-form-name', $form));
     }
     public function testBuildForm()
     {
         $form = new CRM_Sumfields_Form_SumFields();
         $form->assign('fieldsets', []);
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::buildForm(CRM_Sumfields_Form_SumFields::class, $form));
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::buildForm('Not_Relevant_Class_Name', $form));
+        self::assertEmpty(CRM_ActivitySumfields_Service::buildForm(CRM_Sumfields_Form_SumFields::class, $form));
+        self::assertEmpty(CRM_ActivitySumfields_Service::buildForm('Not_Relevant_Class_Name', $form));
     }
     /**
      * Test the postProcess function.
@@ -44,19 +44,19 @@ class CRM_ExtendSummaryFields_ServiceTest extends CRM_ExtendSummaryFields_Headle
     public function testPostProcessDoesNothingWhenTheFormIsIrrelevant()
     {
         $form = new CRM_Sumfields_Form_SumFields();
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::postProcess('irrelevant-form-name', $form));
+        self::assertEmpty(CRM_ActivitySumfields_Service::postProcess('irrelevant-form-name', $form));
     }
     public function testPostProcessNotOnSubmit()
     {
         $form = new CRM_Sumfields_Form_SumFields();
         $submit = [
             'when_to_apply_change' => 'later',
-            'extend_summary_fields_activity_type_ids' => [],
-            'extend_summary_fields_activity_status_ids' => [],
-            'extend_summary_fields_record_type_id' => [],
+            'activity_sumfields_activity_type_ids' => [],
+            'activity_sumfields_activity_status_ids' => [],
+            'activity_sumfields_record_type_id' => [],
         ];
         $form->setVar('_submitValues', $submit);
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
+        self::assertEmpty(CRM_ActivitySumfields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
     }
     public function testPostProcessOnSubmit()
     {
@@ -66,15 +66,15 @@ class CRM_ExtendSummaryFields_ServiceTest extends CRM_ExtendSummaryFields_Headle
         $expectedContactRecortId = [array_keys(CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'))[0]];
         $submit = [
             'when_to_apply_change' => 'on_submit',
-            'extend_summary_fields_activity_type_ids' => $expectedActivityTypeIds,
-            'extend_summary_fields_activity_status_ids' => $expectedActivityStatusIds,
-            'extend_summary_fields_record_type_id' => $expectedContactRecortId,
+            'activity_sumfields_activity_type_ids' => $expectedActivityTypeIds,
+            'activity_sumfields_activity_status_ids' => $expectedActivityStatusIds,
+            'activity_sumfields_record_type_id' => $expectedContactRecortId,
         ];
         $form->setVar('_submitValues', $submit);
-        self::assertEmpty(CRM_ExtendSummaryFields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
-        $config = new CRM_ExtendSummaryFields_Config(E::LONG_NAME);
-        self::assertSame($expectedActivityTypeIds, $config->getSetting('extend_summary_fields_activity_type_ids'));
-        self::assertSame($expectedActivityStatusIds, $config->getSetting('extend_summary_fields_activity_status_ids'));
-        self::assertSame($expectedContactRecortId, $config->getSetting('extend_summary_fields_record_type_id'));
+        self::assertEmpty(CRM_ActivitySumfields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
+        $config = new CRM_ActivitySumfields_Config(E::LONG_NAME);
+        self::assertSame($expectedActivityTypeIds, $config->getSetting('activity_sumfields_activity_type_ids'));
+        self::assertSame($expectedActivityStatusIds, $config->getSetting('activity_sumfields_activity_status_ids'));
+        self::assertSame($expectedContactRecortId, $config->getSetting('activity_sumfields_record_type_id'));
     }
 }

@@ -1,4 +1,4 @@
-Package: extend-summary-fields
+Package: activity-sumfields
 Copyright (C) 2021, akosgarai <szlem01@gmail.com>
 Licensed under the GNU Affero Public License 3.0 (below).
 

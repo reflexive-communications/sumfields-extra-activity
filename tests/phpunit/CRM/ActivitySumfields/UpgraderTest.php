@@ -5,14 +5,14 @@
  *
  * @group headless
  */
-class CRM_ExtendSummaryFields_UpgraderTest extends CRM_ExtendSummaryFields_HeadlessBase
+class CRM_ActivitySumfields_UpgraderTest extends CRM_ActivitySumfields_HeadlessBase
 {
     /**
      * Test the install process.
      */
     public function testInstall()
     {
-        $installer = new CRM_ExtendSummaryFields_Upgrader("ext_test", ".");
+        $installer = new CRM_ActivitySumfields_Upgrader("ext_test", ".");
         self::assertEmpty($installer->install());
     }
 
@@ -21,7 +21,7 @@ class CRM_ExtendSummaryFields_UpgraderTest extends CRM_ExtendSummaryFields_Headl
      */
     public function testUninstall()
     {
-        $installer = new CRM_ExtendSummaryFields_Upgrader("ext_test", ".");
+        $installer = new CRM_ActivitySumfields_Upgrader("ext_test", ".");
         self::assertEmpty($installer->install());
         self::assertEmpty($installer->uninstall());
     }

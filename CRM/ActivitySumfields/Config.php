@@ -1,6 +1,6 @@
 <?php
 
-class CRM_ExtendSummaryFields_Config extends CRM_RcBase_Config
+class CRM_ActivitySumfields_Config extends CRM_RcBase_Config
 {
     /**
      * Provides a default configuration object.
@@ -10,9 +10,9 @@ class CRM_ExtendSummaryFields_Config extends CRM_RcBase_Config
     public function defaultConfiguration(): array
     {
         return [
-            'extend_summary_fields_activity_type_ids' => [],
-            'extend_summary_fields_activity_status_ids' => [],
-            'extend_summary_fields_record_type_id' => [],
+            'activity_sumfields_activity_type_ids' => [],
+            'activity_sumfields_activity_status_ids' => [],
+            'activity_sumfields_record_type_id' => [],
         ];
     }
 

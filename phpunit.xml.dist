@@ -12,9 +12,9 @@
         <!-- Skip the test directory -->
         <directory>./tests</directory>
         <!-- Skip the generated files -->
-        <file>./extend_summary_fields.php</file>
-        <file>./extend_summary_fields.civix.php</file>
-        <file>./CRM/ExtendSummaryFields/Upgrader/Base.php</file>
+        <file>./activity_sumfields.php</file>
+        <file>./activity_sumfields.civix.php</file>
+        <file>./CRM/ActivitySumfields/Upgrader/Base.php</file>
       </exclude>
     </whitelist>
   </filter>

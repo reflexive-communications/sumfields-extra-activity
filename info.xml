@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<extension key="extend-summary-fields" type="module">
-  <file>extend_summary_fields</file>
+<extension key="activity-sumfields" type="module">
+  <file>activity_sumfields</file>
   <name>FIXME</name>
   <description>FIXME</description>
   <license>AGPL-3.0</license>
@@ -25,6 +25,6 @@
     <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
   <civix>
-    <namespace>CRM/ExtendSummaryFields</namespace>
+    <namespace>CRM/ActivitySumfields</namespace>
   </civix>
 </extension>
