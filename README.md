@@ -1,29 +1,39 @@
-# extend-summary-fields
+# activity-sumfields
 
-![Screenshot](/images/screenshot.png)
-
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+This extension provides additional summary fields for calculating the number of activities in the given last n days. The type of the activities, the status of the activities and the role of the contact could be configured on the summaryfields admin screen `Administer > Customize Data and Screens > Summary Fields`.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
+## Activity fields
+
+You can set them on the `Summary Fields Administration` form. This form can be reached from the `Administer > Customize Data and Screens > Summary Fields` menu.
+
+**Activity Fields**
+
+![activity fields](./assets/docs/admin-sumfields-activities.png)
+
+### Settings
+
+The configuration is stored in a setting database. The setting storage provided by the sumfields extension uses deprecated solution, that causes deprecation log entries and test execution errors, so that i decided to replace it in this implementation.
+
+- Activity Types - The selected activity types (you can choose multiple) will be counted. If you left it empty, it will fallback to every activity type.
+- Activity Statuses - The selected activity statuses (you can choose multiple) will be counted. If you left it empty, it will fallback to every activity status.
+- Activity Record Type - The selected participant role (you can choose only one) will be counted. (source, target or assignee)
+
+### Activity fields
+
+- The number of activities in the last 30 days.
+- The number of activities in the last 60 days.
+- The number of activities in the last 90 days.
+- The number of activities in the last 180 days.
+- The number of activities in the last 365 days.
+- The number of activities in the last 730 days.
+
 ## Requirements
 
-* PHP v7.2+
-* CiviCRM (*FIXME: Version number*)
-
-## Installation (Web UI)
-
-Learn more about installing CiviCRM extensions in the [CiviCRM Sysadmin Guide](https://docs.civicrm.org/sysadmin/en/latest/customize/extensions/).
-
-## Installation (CLI, Zip)
-
-Sysadmins and developers may download the `.zip` file for this extension and
-install it with the command-line tool [cv](https://github.com/civicrm/cv).
-
-```bash
-cd <extension-dir>
-cv dl extend-summary-fields@https://github.com/FIXME/extend-summary-fields/archive/master.zip
-```
+* PHP v7.3+
+* CiviCRM v5.37
+* net.ourpowerbase.sumfields
 
 ## Installation (CLI, Git)
 
@@ -31,14 +41,6 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/FIXME/extend-summary-fields.git
-cv en extend_summary_fields
+git clone https://github.com/reflexive-communications/activity-sumfields.git
+cv en activity_sumfields
 ```
-
-## Getting Started
-
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
-
-## Known Issues
-
-(* FIXME *)
