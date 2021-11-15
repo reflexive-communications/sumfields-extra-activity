@@ -150,5 +150,10 @@ class CRM_ActivitySumfields_DefinitionTest extends CRM_ActivitySumfields_Headles
             $value = $this->getCustomFieldValue($contactId, 'The number of activities in the last '.$day.' days');
             self::assertEquals($expectedNumber, $value, 'Wrong value returned for '.$day.' day.');
         }
+        $this->addActivity($contactId, 1);
+        foreach ($days as $day => $expectedNumber) {
+            $value = $this->getCustomFieldValue($contactId, 'The number of activities in the last '.$day.' days');
+            self::assertEquals($expectedNumber+1, $value, 'Wrong value returned for '.$day.' day.');
+        }
     }
 }
