@@ -53,7 +53,7 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
             'when_to_apply_change' => 'later',
             'activity_sumfields_activity_type_ids' => [],
             'activity_sumfields_activity_status_ids' => [],
-            'activity_sumfields_record_type_id' => [],
+            'activity_sumfields_record_type_id' => '',
         ];
         $form->setVar('_submitValues', $submit);
         self::assertEmpty(CRM_ActivitySumfields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
@@ -63,7 +63,7 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
         $form = new CRM_Sumfields_Form_SumFields();
         $expectedActivityTypeIds = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'));
         $expectedActivityStatusIds = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'));
-        $expectedContactRecortId = [array_keys(CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'))[0]];
+        $expectedContactRecortId = array_keys(CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'))[0];
         $submit = [
             'when_to_apply_change' => 'on_submit',
             'activity_sumfields_activity_type_ids' => $expectedActivityTypeIds,
