@@ -64,9 +64,9 @@ class CRM_ActivitySumfields_Service
         self::sumfieldsDefinition($custom);
 
         // Create a field for Financial Types on related contributions.
-        $form->add('select', 'activity_sumfields_activity_type_ids', $labels['activity-type'], CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'), false, self::MULTIPLE_OPTIONS);
-        $form->add('select', 'activity_sumfields_activity_status_ids', $labels['activity-status'], CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'), false, self::MULTIPLE_OPTIONS);
-        $form->add('select', 'activity_sumfields_record_type_id', $labels['contact-record-type'], CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'), false, self::SINGLE_OPTIONS);
+        $form->add('select', 'activity_sumfields_activity_type_ids', $labels['activity-type'], CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'), true, self::MULTIPLE_OPTIONS);
+        $form->add('select', 'activity_sumfields_activity_status_ids', $labels['activity-status'], CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'), true, self::MULTIPLE_OPTIONS);
+        $form->add('select', 'activity_sumfields_record_type_id', $labels['contact-record-type'], CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'), true, self::SINGLE_OPTIONS);
         $fieldsets[$custom['optgroups']['activity_sumfields']['fieldset']]['activity_sumfields_activity_type_ids'] = $labels['activity-type-desc'];
         $fieldsets[$custom['optgroups']['activity_sumfields']['fieldset']]['activity_sumfields_activity_status_ids'] = $labels['activity-status-desc'];
         $fieldsets[$custom['optgroups']['activity_sumfields']['fieldset']]['activity_sumfields_record_type_id'] = $labels['contact-record-type-desc'];
