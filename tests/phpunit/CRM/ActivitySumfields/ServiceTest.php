@@ -19,9 +19,10 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
         // the definition list has to be extended.
         self::assertTrue(array_key_exists('fields', $definitions));
         self::assertTrue(array_key_exists('optgroups', $definitions));
-        self::assertCount(6, $definitions['fields']);
-        self::assertCount(1, $definitions['optgroups']);
+        self::assertCount(7, $definitions['fields']);
+        self::assertCount(2, $definitions['optgroups']);
         self::assertTrue(array_key_exists('activity_sumfields', $definitions['optgroups']));
+        self::assertTrue(array_key_exists('activity_sumfields_date_of_activity', $definitions['optgroups']));
     }
     /*
      * It tests the buildForm function.
