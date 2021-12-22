@@ -147,4 +147,35 @@ class CRM_ActivitySumfields_Service
             'fieldset' => 'Activities',
         ];
     }
+
+    /**
+     * This function extends the sumfield definition list with
+     * our ones. The date of the last activity of the contact.
+     */
+    private static function sumfieldsDefinitionLatestActivity(&$custom): void
+    {
+        $custom['fields']['date_of_the_last_activity'] = [
+            'optgroup' => 'activity_sumfields_date_of_activity',
+            'label' => 'The date of the last activity',
+            'data_type' => 'Date',
+            'html_type' => 'Select Date',
+            'weight' => '15',
+            'text_length' => '32',
+            'trigger_table' => 'civicrm_activity_contact',
+            'trigger_sql' => self::rewriteSql('(
+                SELECT MAX(a.activity_date_time)
+                FROM civicrm_activity_contact ac
+                LEFT JOIN civicrm_activity a ON a.id = ac.activity_id
+                WHERE ac.contact_id = NEW.contact_id
+                AND ac.record_type_id = %activity_sumfields_date_record_type_id
+                AND a.activity_type_id IN (%activity_sumfields_date_activity_type_ids)
+                AND a.status_id IN (%activity_sumfields_date_activity_status_ids)
+            )'),
+        ];
+        // Add new optgroup that will contain the setting parameters for the activities
+        $custom['optgroups']['activity_sumfields_date_of_activity'] = [
+            'title' => 'Activity dates',
+            'fieldset' => 'Activities',
+        ];
+    }
 }
