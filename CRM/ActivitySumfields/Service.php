@@ -13,6 +13,7 @@ class CRM_ActivitySumfields_Service
     public static function sumfieldsDefinition(&$custom)
     {
         self::sumfieldsDefinitionNumberOfActivities($custom);
+        self::sumfieldsDefinitionLatestActivity($custom);
     }
     public static function buildForm($formName, &$form)
     {
