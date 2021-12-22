@@ -127,7 +127,7 @@ class CRM_ActivitySumfields_Service
         }
 
         $recordTypeIdPair = ['activity_sumfields_record_type_id', 'activity_sumfields_date_record_type_id'];
-        foreach ($activityStatusIdPair as $param) {
+        foreach ($recordTypeIdPair as $param) {
             $ids = $settings->getSetting($param);
             if (count($ids) == 0) {
                 $ids = ['2'];
@@ -201,7 +201,7 @@ class CRM_ActivitySumfields_Service
         // Add new optgroup that will contain the setting parameters for the activities
         $custom['optgroups']['activity_sumfields_date_of_activity'] = [
             'title' => 'Activity dates',
-            'fieldset' => 'Activities',
+            'fieldset' => 'Activity Dates',
         ];
     }
 }
