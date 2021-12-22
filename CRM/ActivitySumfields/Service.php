@@ -8,38 +8,11 @@ class CRM_ActivitySumfields_Service
     const SINGLE_OPTIONS = ['multiple' => false, 'class' => 'crm-select2 huge'];
     /**
      * This function extends the sumfield definition list with
-     * our ones. Number of activities in the last
-     * 30, 60, 90, 180, 365, 730 days.
+     * our ones.
      */
     public static function sumfieldsDefinition(&$custom)
     {
-        $days = ['30', '60', '90', '180', '365', '730'];
-        foreach ($days as $day) {
-            $custom['fields']['number_of_activities_'.$day] = [
-                'optgroup' => 'activity_sumfields',
-                'label' => 'The number of activities in the last '.$day.' days',
-                'data_type' => 'Integer',
-                'html_type' => 'Text',
-                'weight' => '15',
-                'text_length' => '32',
-                'trigger_table' => 'civicrm_activity_contact',
-                'trigger_sql' => self::rewriteSql('(
-                    SELECT COALESCE(COUNT(1), 0)
-                    FROM civicrm_activity_contact ac
-                    LEFT JOIN civicrm_activity a ON a.id = ac.activity_id
-                    WHERE ac.contact_id = NEW.contact_id
-                    AND ac.record_type_id = %activity_sumfields_record_type_id
-                    AND a.activity_type_id IN (%activity_sumfields_activity_type_ids)
-                    AND a.status_id IN (%activity_sumfields_activity_status_ids)
-                    AND a.activity_date_time >= DATE_SUB(CURDATE(), INTERVAL '.$day.' DAY)
-                )'),
-            ];
-        }
-        // Add new optgroup that will contain the setting parameters for the activities
-        $custom['optgroups']['activity_sumfields'] = [
-            'title' => 'Number of activities',
-            'fieldset' => 'Activities',
-        ];
+        self::sumfieldsDefinitionNumberOfActivities($custom);
     }
     public static function buildForm($formName, &$form)
     {
@@ -137,5 +110,41 @@ class CRM_ActivitySumfields_Service
         $sql = str_replace('%activity_sumfields_record_type_id', $ids[0], $sql);
 
         return $sql;
+    }
+
+    /**
+     * This function extends the sumfield definition list with
+     * our ones. Number of activities in the last
+     * 30, 60, 90, 180, 365, 730 days.
+     */
+    private static function sumfieldsDefinitionNumberOfActivities(&$custom): void
+    {
+        $days = ['30', '60', '90', '180', '365', '730'];
+        foreach ($days as $day) {
+            $custom['fields']['number_of_activities_'.$day] = [
+                'optgroup' => 'activity_sumfields',
+                'label' => 'The number of activities in the last '.$day.' days',
+                'data_type' => 'Integer',
+                'html_type' => 'Text',
+                'weight' => '15',
+                'text_length' => '32',
+                'trigger_table' => 'civicrm_activity_contact',
+                'trigger_sql' => self::rewriteSql('(
+                    SELECT COALESCE(COUNT(1), 0)
+                    FROM civicrm_activity_contact ac
+                    LEFT JOIN civicrm_activity a ON a.id = ac.activity_id
+                    WHERE ac.contact_id = NEW.contact_id
+                    AND ac.record_type_id = %activity_sumfields_record_type_id
+                    AND a.activity_type_id IN (%activity_sumfields_activity_type_ids)
+                    AND a.status_id IN (%activity_sumfields_activity_status_ids)
+                    AND a.activity_date_time >= DATE_SUB(CURDATE(), INTERVAL '.$day.' DAY)
+                )'),
+            ];
+        }
+        // Add new optgroup that will contain the setting parameters for the activities
+        $custom['optgroups']['activity_sumfields'] = [
+            'title' => 'Number of activities',
+            'fieldset' => 'Activities',
+        ];
     }
 }
