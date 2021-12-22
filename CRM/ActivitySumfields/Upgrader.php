@@ -47,7 +47,7 @@ class CRM_ActivitySumfields_Upgrader extends CRM_ActivitySumfields_Upgrader_Base
         $config = new CRM_ActivitySumfields_Config($this->extensionName);
         $default = $config->defaultConfiguration();
         $config->load();
-        $current + $config->get();
+        $current = $config->get();
         $needsToBeAdded = ['activity_sumfields_date_activity_type_ids', 'activity_sumfields_date_activity_status_ids', 'activity_sumfields_date_record_type_id'];
         foreach ($needsToBeAdded as $newConfig) {
             $current[$newConfig] = $default[$newConfig];
