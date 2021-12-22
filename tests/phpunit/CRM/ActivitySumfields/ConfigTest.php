@@ -12,7 +12,10 @@ class CRM_ActivitySumfields_ConfigTest extends CRM_ActivitySumfields_HeadlessBas
      */
     public function testDefaultConfiguration()
     {
-        $expectedKeys = ['activity_sumfields_activity_type_ids', 'activity_sumfields_activity_status_ids', 'activity_sumfields_record_type_id'];
+        $expectedKeys = [
+            'activity_sumfields_activity_type_ids', 'activity_sumfields_activity_status_ids', 'activity_sumfields_record_type_id',
+            'activity_sumfields_date_activity_type_ids', 'activity_sumfields_date_activity_status_ids', 'activity_sumfields_date_record_type_id',
+        ];
         $config = new CRM_ActivitySumfields_Config('config_test');
         $defaults = $config->defaultConfiguration();
         foreach ($expectedKeys as $k) {
@@ -30,6 +33,9 @@ class CRM_ActivitySumfields_ConfigTest extends CRM_ActivitySumfields_HeadlessBas
             'activity_sumfields_activity_type_ids' => [1,2],
             'activity_sumfields_activity_status_ids' => [2,3,5],
             'activity_sumfields_record_type_id' => [1],
+            'activity_sumfields_date_activity_type_ids' => [1,2],
+            'activity_sumfields_date_activity_status_ids' => [2,3,5],
+            'activity_sumfields_date_record_type_id' => [1],
         ];
         $config = new CRM_ActivitySumfields_Config('config_test');
         self::assertTrue($config->create());
@@ -48,6 +54,9 @@ class CRM_ActivitySumfields_ConfigTest extends CRM_ActivitySumfields_HeadlessBas
             'activity_sumfields_activity_type_ids' => [1,2],
             'activity_sumfields_activity_status_ids' => [2,3,5],
             'activity_sumfields_record_type_id' => [1],
+            'activity_sumfields_date_activity_type_ids' => [1,2],
+            'activity_sumfields_date_activity_status_ids' => [2,3,5],
+            'activity_sumfields_date_record_type_id' => [1],
         ];
         $config = new CRM_ActivitySumfields_Config('config_test');
         $config->update($testData);
