@@ -89,25 +89,34 @@ class CRM_ActivitySumfields_Service
         // we fill it with all possible values at the moment. If a new option
         // is added, summary fields will have to be re-configured.
 
-        $ids = $settings->getSetting('activity_sumfields_activity_type_ids');
-        if (count($ids) == 0) {
-            $ids = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'));
+        $activityTypeIdPair = ['activity_sumfields_activity_type_ids', 'activity_sumfields_date_activity_type_ids'];
+        foreach ($activityTypeIdPair as $param) {
+            $ids = $settings->getSetting($param);
+            if (count($ids) == 0) {
+                $ids = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'));
+            }
+            $str_ids = implode(',', $ids);
+            $sql = str_replace('%'.$param, $str_ids, $sql);
         }
-        $str_ids = implode(',', $ids);
-        $sql = str_replace('%activity_sumfields_activity_type_ids', $str_ids, $sql);
 
-        $ids = $settings->getSetting('activity_sumfields_activity_status_ids');
-        if (count($ids) == 0) {
-            $ids = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'));
+        $activityStatusIdPair = ['activity_sumfields_activity_status_ids', 'activity_sumfields_date_activity_status_ids'];
+        foreach ($activityStatusIdPair as $param) {
+            $ids = $settings->getSetting($param);
+            if (count($ids) == 0) {
+                $ids = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'));
+            }
+            $str_ids = implode(',', $ids);
+            $sql = str_replace('%'.$param, $str_ids, $sql);
         }
-        $str_ids = implode(',', $ids);
-        $sql = str_replace('%activity_sumfields_activity_status_ids', $str_ids, $sql);
 
-        $ids = $settings->getSetting('activity_sumfields_record_type_id');
-        if (count($ids) == 0) {
-            $ids = ['2'];
+        $recordTypeIdPair = ['activity_sumfields_record_type_id', 'activity_sumfields_date_record_type_id'];
+        foreach ($activityStatusIdPair as $param) {
+            $ids = $settings->getSetting($param);
+            if (count($ids) == 0) {
+                $ids = ['2'];
+            }
+            $sql = str_replace('%'.$param, $ids[0], $sql);
         }
-        $sql = str_replace('%activity_sumfields_record_type_id', $ids[0], $sql);
 
         return $sql;
     }
