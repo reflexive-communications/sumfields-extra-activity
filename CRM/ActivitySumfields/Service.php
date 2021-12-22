@@ -37,18 +37,31 @@ class CRM_ActivitySumfields_Service
         $custom = [];
         self::sumfieldsDefinition($custom);
 
-        // Create a field for Financial Types on related contributions.
-        $form->add('select', 'activity_sumfields_activity_type_ids', $labels['activity-type'], CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'), true, self::MULTIPLE_OPTIONS);
-        $form->add('select', 'activity_sumfields_activity_status_ids', $labels['activity-status'], CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'), true, self::MULTIPLE_OPTIONS);
-        $form->add('select', 'activity_sumfields_record_type_id', $labels['contact-record-type'], CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'), true, self::SINGLE_OPTIONS);
+        $activityTypes = CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get');
+        $activityStatuses = CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get');
+        $recordTypes = CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get');
+        // Count of activity fields
+        $form->add('select', 'activity_sumfields_activity_type_ids', $labels['activity-type'], $activityTypes, true, self::MULTIPLE_OPTIONS);
+        $form->add('select', 'activity_sumfields_activity_status_ids', $labels['activity-status'], $activityStatuses, true, self::MULTIPLE_OPTIONS);
+        $form->add('select', 'activity_sumfields_record_type_id', $labels['contact-record-type'], $recordTypes, true, self::SINGLE_OPTIONS);
         $fieldsets[$custom['optgroups']['activity_sumfields']['fieldset']]['activity_sumfields_activity_type_ids'] = $labels['activity-type-desc'];
         $fieldsets[$custom['optgroups']['activity_sumfields']['fieldset']]['activity_sumfields_activity_status_ids'] = $labels['activity-status-desc'];
         $fieldsets[$custom['optgroups']['activity_sumfields']['fieldset']]['activity_sumfields_record_type_id'] = $labels['contact-record-type-desc'];
+        // Date of activity fields
+        $form->add('select', 'activity_sumfields_date_activity_type_ids', $labels['activity-type'], $activityTypes, true, self::MULTIPLE_OPTIONS);
+        $form->add('select', 'activity_sumfields_date_activity_status_ids', $labels['activity-status'], $activityStatuses, true, self::MULTIPLE_OPTIONS);
+        $form->add('select', 'activity_sumfields_date_record_type_id', $labels['contact-record-type'], $recordTypes, true, self::SINGLE_OPTIONS);
+        $fieldsets[$custom['optgroups']['activity_sumfields_date_of_activity']['fieldset']]['activity_sumfields_date_activity_type_ids'] = $labels['activity-type-desc'];
+        $fieldsets[$custom['optgroups']['activity_sumfields_date_of_activity']['fieldset']]['activity_sumfields_date_activity_status_ids'] = $labels['activity-status-desc'];
+        $fieldsets[$custom['optgroups']['activity_sumfields_date_of_activity']['fieldset']]['activity_sumfields_date_record_type_id'] = $labels['contact-record-type-desc'];
         // Set defaults.
         $form->setDefaults([
             'activity_sumfields_activity_type_ids' => $settings->getSetting('activity_sumfields_activity_type_ids'),
             'activity_sumfields_activity_status_ids' => $settings->getSetting('activity_sumfields_activity_status_ids'),
             'activity_sumfields_record_type_id' => $settings->getSetting('activity_sumfields_record_type_id'),
+            'activity_sumfields_date_activity_type_ids' => $settings->getSetting('activity_sumfields_date_activity_type_ids'),
+            'activity_sumfields_date_activity_status_ids' => $settings->getSetting('activity_sumfields_date_activity_status_ids'),
+            'activity_sumfields_date_record_type_id' => $settings->getSetting('activity_sumfields_date_record_type_id'),
         ]);
 
         $form->assign('fieldsets', $fieldsets);
