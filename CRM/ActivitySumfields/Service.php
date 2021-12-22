@@ -64,9 +64,12 @@ class CRM_ActivitySumfields_Service
             // Save option fields as submitted.
             $settings = new CRM_ActivitySumfields_Config(E::LONG_NAME);
             $settings->updateSetting('activity_sumfields_activity_type_ids', CRM_Utils_Array::value('activity_sumfields_activity_type_ids', $form->_submitValues));
+            $settings->updateSetting('activity_sumfields_date_activity_type_ids', CRM_Utils_Array::value('activity_sumfields_date_activity_type_ids', $form->_submitValues));
             $settings->updateSetting('activity_sumfields_activity_status_ids', CRM_Utils_Array::value('activity_sumfields_activity_status_ids', $form->_submitValues));
+            $settings->updateSetting('activity_sumfields_date_activity_status_ids', CRM_Utils_Array::value('activity_sumfields_date_activity_status_ids', $form->_submitValues));
             // As the record type id is a single select, the string value is returned not an array.
             $settings->updateSetting('activity_sumfields_record_type_id', [CRM_Utils_Array::value('activity_sumfields_record_type_id', $form->_submitValues)]);
+            $settings->updateSetting('activity_sumfields_date_record_type_id', [CRM_Utils_Array::value('activity_sumfields_date_record_type_id', $form->_submitValues)]);
 
             if ($form->_submitValues['when_to_apply_change'] == 'on_submit') {
                 $returnValues = [];
