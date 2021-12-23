@@ -48,3 +48,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 git clone https://github.com/reflexive-communications/activity-sumfields.git
 cv en activity_sumfields
 ```
+
+## Changes
+
+- In v1.1.0 the setting database has been extended with the date of activity configuration keys.
