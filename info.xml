@@ -2,7 +2,7 @@
 <extension key="activity-sumfields" type="module">
   <file>activity_sumfields</file>
   <name>Summary Fields for Activities</name>
-  <description>Summary fields for the number of activities.</description>
+  <description>Summary fields for the numbers and date of activities.</description>
   <license>AGPL-3.0</license>
   <maintainer>
     <author>akosgarai</author>
@@ -14,8 +14,8 @@
     <url desc="Support">https://github.com/reflexive-communications/activity-sumfields/issues</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate>2021-11-17</releaseDate>
-  <version>1.0.1</version>
+  <releaseDate>2021-12-23</releaseDate>
+  <version>1.1.0</version>
   <develStage>stable</develStage>
   <compatibility>
     <ver>5.0</ver>
@@ -24,7 +24,7 @@
     <ext>net.ourpowerbase.sumfields</ext>
     <ext>rc-base</ext>
   </requires>
-  <comments>Summary fields for the number of activities.</comments>
+  <comments>Summary fields for the numbers and date of activities.</comments>
   <classloader>
     <psr4 prefix="Civi\" path="Civi"/>
   </classloader>
