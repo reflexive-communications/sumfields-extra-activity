@@ -1,6 +1,6 @@
 # activity-sumfields
 
-This extension provides additional summary fields for calculating the number of activities in the given last n days. The type of the activities, the status of the activities and the role of the contact could be configured on the summaryfields admin screen `Administer > Customize Data and Screens > Summary Fields`.
+This extension provides additional summary fields for calculating the number of activities in the given last n days, and the date of the last activity. The type of the activities, the status of the activities and the role of the contact could be configured on the summaryfields admin screen `Administer > Customize Data and Screens > Summary Fields`.
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
@@ -20,7 +20,7 @@ The configuration is stored in a setting database. The setting storage provided 
 - Activity Statuses - The selected activity statuses (you can choose multiple) will be counted. If you left it empty, it will fallback to every activity status.
 - Activity Record Type - The selected participant role (you can choose only one) will be counted. (source, target or assignee)
 
-### Activity fields
+### Number of activities fields
 
 - The number of activities in the last 30 days.
 - The number of activities in the last 60 days.
@@ -29,10 +29,14 @@ The configuration is stored in a setting database. The setting storage provided 
 - The number of activities in the last 365 days.
 - The number of activities in the last 730 days.
 
+### Date of activities fields
+
+- The date of the last activity.
+
 ## Requirements
 
-* PHP v7.3+
-* CiviCRM v5.37
+* PHP v7.4+
+* CiviCRM v5.43
 * net.ourpowerbase.sumfields
 
 ## Installation (CLI, Git)
