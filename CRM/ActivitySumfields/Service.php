@@ -150,7 +150,7 @@ class CRM_ActivitySumfields_Service
             $custom['fields']['number_of_activities_'.$day] = [
                 'optgroup' => 'activity_sumfields',
                 'label' => 'The number of activities in the last '.$day.' days',
-                'data_type' => 'Integer',
+                'data_type' => 'Int',
                 'html_type' => 'Text',
                 'weight' => '15',
                 'text_length' => '32',
