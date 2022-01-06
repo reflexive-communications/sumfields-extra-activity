@@ -124,7 +124,7 @@ class CRM_ActivitySumfields_DefinitionTest extends CRM_ActivitySumfields_Headles
         $contactId = $this->createContact();
         $activityDaysBeforeNow = [5, 35, 65, 95, 185, 370, 735];
         foreach ($activityDaysBeforeNow as $before) {
-            $activityDate = date('Y:m-d H:i', strtotime($before.' days ago'));
+            $activityDate = date('Y-m-d H:i', strtotime($before.' days ago'));
             $activityId = $this->addActivity($contactId, 1);
             // update activity with sql
             $sql = "UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2";
@@ -155,5 +155,29 @@ class CRM_ActivitySumfields_DefinitionTest extends CRM_ActivitySumfields_Headles
             $value = $this->getCustomFieldValue($contactId, 'The number of activities in the last '.$day.' days');
             self::assertEquals($expectedNumber+1, $value, 'Wrong value returned for '.$day.' day.');
         }
+    }
+    public function testDateOfActivities()
+    {
+        $settings = new CRM_ActivitySumfields_Config(E::LONG_NAME);
+        self::assertTrue($settings->updateSetting('activity_sumfields_date_activity_type_ids', [1]));
+        self::assertTrue($settings->updateSetting('activity_sumfields_date_record_type_id', [2]));
+
+        $contactId = $this->createContact();
+        $activityDate = date('Y-m-d H:i', strtotime('5 days ago'));
+        $activityId = $this->addActivity($contactId, 1);
+        // update activity with sql
+        $sql = "UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2";
+        $params = [
+            1 => [$activityDate, 'String'],
+            2 => [$activityId, 'Int'],
+        ];
+        CRM_Core_DAO::executeQuery($sql, $params);
+        // Enable fields
+        $fields = [
+            'date_of_the_last_activity',
+        ];
+        $this->enableSummaryField($fields);
+        $value = $this->getCustomFieldValue($contactId, 'The date of the last activity');
+        self::assertEquals($activityDate.':00', $value, 'Invalid last activity date');
     }
 }

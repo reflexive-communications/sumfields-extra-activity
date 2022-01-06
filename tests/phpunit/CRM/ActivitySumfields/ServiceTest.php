@@ -19,9 +19,10 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
         // the definition list has to be extended.
         self::assertTrue(array_key_exists('fields', $definitions));
         self::assertTrue(array_key_exists('optgroups', $definitions));
-        self::assertCount(6, $definitions['fields']);
-        self::assertCount(1, $definitions['optgroups']);
+        self::assertCount(7, $definitions['fields']);
+        self::assertCount(2, $definitions['optgroups']);
         self::assertTrue(array_key_exists('activity_sumfields', $definitions['optgroups']));
+        self::assertTrue(array_key_exists('activity_sumfields_date_of_activity', $definitions['optgroups']));
     }
     /*
      * It tests the buildForm function.
@@ -49,11 +50,17 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
     public function testPostProcessNotOnSubmit()
     {
         $form = new CRM_Sumfields_Form_SumFields();
+        $expectedActivityTypeIds = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_type_id', 'get'));
+        $expectedActivityStatusIds = array_keys(CRM_Activity_BAO_Activity::buildOptions('activity_status_id', 'get'));
+        $expectedContactRecortId = array_keys(CRM_Activity_BAO_ActivityContact::buildOptions('record_type_id', 'get'))[0];
         $submit = [
             'when_to_apply_change' => 'later',
-            'activity_sumfields_activity_type_ids' => [],
-            'activity_sumfields_activity_status_ids' => [],
-            'activity_sumfields_record_type_id' => '',
+            'activity_sumfields_activity_type_ids' => $expectedActivityTypeIds,
+            'activity_sumfields_activity_status_ids' => $expectedActivityStatusIds,
+            'activity_sumfields_record_type_id' => $expectedContactRecortId,
+            'activity_sumfields_date_activity_type_ids' => $expectedActivityTypeIds,
+            'activity_sumfields_date_activity_status_ids' => $expectedActivityStatusIds,
+            'activity_sumfields_date_record_type_id' => $expectedContactRecortId,
         ];
         $form->setVar('_submitValues', $submit);
         self::assertEmpty(CRM_ActivitySumfields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
@@ -69,12 +76,18 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
             'activity_sumfields_activity_type_ids' => $expectedActivityTypeIds,
             'activity_sumfields_activity_status_ids' => $expectedActivityStatusIds,
             'activity_sumfields_record_type_id' => $expectedContactRecortId,
+            'activity_sumfields_date_activity_type_ids' => $expectedActivityTypeIds,
+            'activity_sumfields_date_activity_status_ids' => $expectedActivityStatusIds,
+            'activity_sumfields_date_record_type_id' => $expectedContactRecortId,
         ];
         $form->setVar('_submitValues', $submit);
         self::assertEmpty(CRM_ActivitySumfields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
         $config = new CRM_ActivitySumfields_Config(E::LONG_NAME);
         self::assertSame($expectedActivityTypeIds, $config->getSetting('activity_sumfields_activity_type_ids'));
+        self::assertSame($expectedActivityTypeIds, $config->getSetting('activity_sumfields_date_activity_type_ids'));
         self::assertSame($expectedActivityStatusIds, $config->getSetting('activity_sumfields_activity_status_ids'));
+        self::assertSame($expectedActivityStatusIds, $config->getSetting('activity_sumfields_date_activity_status_ids'));
         self::assertSame([$expectedContactRecortId], $config->getSetting('activity_sumfields_record_type_id'));
+        self::assertSame([$expectedContactRecortId], $config->getSetting('activity_sumfields_date_record_type_id'));
     }
 }
