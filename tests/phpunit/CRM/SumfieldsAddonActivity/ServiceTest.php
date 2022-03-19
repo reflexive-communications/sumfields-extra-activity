@@ -1,13 +1,13 @@
 <?php
 
-use CRM_ActivitySumfields_ExtensionUtil as E;
+use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
  * Testcases for Service class.
  *
  * @group headless
  */
-class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBase
+class CRM_SumfieldsAddonActivity_ServiceTest extends CRM_SumfieldsAddonActivity_HeadlessBase
 {
     /*
      * It tests the sumfieldsDefinition function.
@@ -15,7 +15,7 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
     public function testSumfieldsDefinition()
     {
         $definitions = [];
-        self::assertEmpty(CRM_ActivitySumfields_Service::sumfieldsDefinition($definitions));
+        self::assertEmpty(CRM_SumfieldsAddonActivity_Service::sumfieldsDefinition($definitions));
         // the definition list has to be extended.
         self::assertTrue(array_key_exists('fields', $definitions));
         self::assertTrue(array_key_exists('optgroups', $definitions));
@@ -24,29 +24,33 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
         self::assertTrue(array_key_exists('activity_sumfields', $definitions['optgroups']));
         self::assertTrue(array_key_exists('activity_sumfields_date_of_activity', $definitions['optgroups']));
     }
+
     /*
      * It tests the buildForm function.
      */
     public function testBuildFormDoesNothingWhenTheFormIsIrrelevant()
     {
         $form = new CRM_Sumfields_Form_SumFields();
-        self::assertEmpty(CRM_ActivitySumfields_Service::buildForm('irrelevant-form-name', $form));
+        self::assertEmpty(CRM_SumfieldsAddonActivity_Service::buildForm('irrelevant-form-name', $form));
     }
+
     public function testBuildForm()
     {
         $form = new CRM_Sumfields_Form_SumFields();
         $form->assign('fieldsets', []);
-        self::assertEmpty(CRM_ActivitySumfields_Service::buildForm(CRM_Sumfields_Form_SumFields::class, $form));
-        self::assertEmpty(CRM_ActivitySumfields_Service::buildForm('Not_Relevant_Class_Name', $form));
+        self::assertEmpty(CRM_SumfieldsAddonActivity_Service::buildForm(CRM_Sumfields_Form_SumFields::class, $form));
+        self::assertEmpty(CRM_SumfieldsAddonActivity_Service::buildForm('Not_Relevant_Class_Name', $form));
     }
+
     /**
      * Test the postProcess function.
      */
     public function testPostProcessDoesNothingWhenTheFormIsIrrelevant()
     {
         $form = new CRM_Sumfields_Form_SumFields();
-        self::assertEmpty(CRM_ActivitySumfields_Service::postProcess('irrelevant-form-name', $form));
+        self::assertEmpty(CRM_SumfieldsAddonActivity_Service::postProcess('irrelevant-form-name', $form));
     }
+
     public function testPostProcessNotOnSubmit()
     {
         $form = new CRM_Sumfields_Form_SumFields();
@@ -63,8 +67,9 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
             'activity_sumfields_date_record_type_id' => $expectedContactRecortId,
         ];
         $form->setVar('_submitValues', $submit);
-        self::assertEmpty(CRM_ActivitySumfields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
+        self::assertEmpty(CRM_SumfieldsAddonActivity_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
     }
+
     public function testPostProcessOnSubmit()
     {
         $form = new CRM_Sumfields_Form_SumFields();
@@ -81,8 +86,8 @@ class CRM_ActivitySumfields_ServiceTest extends CRM_ActivitySumfields_HeadlessBa
             'activity_sumfields_date_record_type_id' => $expectedContactRecortId,
         ];
         $form->setVar('_submitValues', $submit);
-        self::assertEmpty(CRM_ActivitySumfields_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
-        $config = new CRM_ActivitySumfields_Config(E::LONG_NAME);
+        self::assertEmpty(CRM_SumfieldsAddonActivity_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
+        $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         self::assertSame($expectedActivityTypeIds, $config->getSetting('activity_sumfields_activity_type_ids'));
         self::assertSame($expectedActivityTypeIds, $config->getSetting('activity_sumfields_date_activity_type_ids'));
         self::assertSame($expectedActivityStatusIds, $config->getSetting('activity_sumfields_activity_status_ids'));
