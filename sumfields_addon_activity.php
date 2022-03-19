@@ -162,7 +162,7 @@ function sumfields_addon_activity_civicrm_themes(&$themes)
  */
 function sumfields_addon_activity_civicrm_sumfields_definitions(&$custom)
 {
-    CRM_ActivitySumfields_Service::sumfieldsDefinition($custom);
+    CRM_SumfieldsAddonActivity_Service::sumfieldsDefinition($custom);
 }
 
 /**
@@ -172,7 +172,7 @@ function sumfields_addon_activity_civicrm_sumfields_definitions(&$custom)
  */
 function sumfields_addon_activity_civicrm_buildForm($formName, &$form)
 {
-    CRM_ActivitySumfields_Service::buildForm($formName, $form);
+    CRM_SumfieldsAddonActivity_Service::buildForm($formName, $form);
 }
 
 /**
@@ -182,5 +182,5 @@ function sumfields_addon_activity_civicrm_buildForm($formName, &$form)
  */
 function sumfields_addon_activity_civicrm_postProcess($formName, &$form)
 {
-    CRM_ActivitySumfields_Service::postProcess($formName, $form);
+    CRM_SumfieldsAddonActivity_Service::postProcess($formName, $form);
 }
