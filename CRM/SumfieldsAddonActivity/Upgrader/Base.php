@@ -49,7 +49,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
     {
         if (!self::$instance) {
             self::$instance = new CRM_SumfieldsAddonActivity_Upgrader(
-                'activity-sumfields',
+                'sumfields-addon-activity',
                 E::path()
             );
         }
