@@ -1,6 +1,6 @@
 <?php
 
-class CRM_ActivitySumfields_Config extends CRM_RcBase_Config
+class CRM_SumfieldsAddonActivity_Config extends CRM_RcBase_Config
 {
     /**
      * Provides a default configuration object.

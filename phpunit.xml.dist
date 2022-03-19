@@ -4,7 +4,8 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          convertDeprecationsToExceptions="true"
-         bootstrap="tests/phpunit/bootstrap.php">
+         bootstrap="tests/phpunit/bootstrap.php"
+         testdox="true">
     <testsuites>
         <testsuite name="My Test Suite">
             <directory>./tests/phpunit</directory>
@@ -17,9 +18,9 @@
                 <!-- Skip the test directory -->
                 <directory>./tests</directory>
                 <!-- Skip the generated files -->
-                <file>./activity_sumfields.php</file>
-                <file>./activity_sumfields.civix.php</file>
-                <file>./CRM/ActivitySumfields/Upgrader/Base.php</file>
+                <file>./sumfields_addon_activity.php</file>
+                <file>./sumfields_addon_activity.civix.php</file>
+                <file>./CRM/SumfieldsAddonActivity/Upgrader/Base.php</file>
             </exclude>
         </whitelist>
     </filter>

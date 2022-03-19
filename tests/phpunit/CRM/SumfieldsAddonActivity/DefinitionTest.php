@@ -1,6 +1,6 @@
 <?php
 
-use CRM_ActivitySumfields_ExtensionUtil as E;
+use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 use Civi\Api4\Activity;
 use Civi\Api4\Contact;
@@ -11,11 +11,12 @@ use Civi\Api4\CustomField;
  *
  * @group headless
  */
-class CRM_ActivitySumfields_DefinitionTest extends CRM_ActivitySumfields_HeadlessBase
+class CRM_SumfieldsAddonActivity_DefinitionTest extends CRM_SumfieldsAddonActivity_HeadlessBase
 {
     public function setUpHeadless()
     {
     }
+
     /**
      * Create contact
      *
@@ -105,9 +106,10 @@ class CRM_ActivitySumfields_DefinitionTest extends CRM_ActivitySumfields_Headles
         self::assertArrayHasKey('id', $activity, 'activity ID not found');
         return (int)$activity['id'];
     }
+
     public function hook_civicrm_sumfields_definitions(&$custom)
     {
-        CRM_ActivitySumfields_Service::sumfieldsDefinition($custom);
+        CRM_SumfieldsAddonActivity_Service::sumfieldsDefinition($custom);
     }
 
     /**
@@ -117,7 +119,7 @@ class CRM_ActivitySumfields_DefinitionTest extends CRM_ActivitySumfields_Headles
      */
     public function testNumberOfActivitiesInLastIntervals()
     {
-        $settings = new CRM_ActivitySumfields_Config(E::LONG_NAME);
+        $settings = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         self::assertTrue($settings->updateSetting('activity_sumfields_activity_type_ids', [1]));
         self::assertTrue($settings->updateSetting('activity_sumfields_record_type_id', [2]));
 
@@ -153,12 +155,13 @@ class CRM_ActivitySumfields_DefinitionTest extends CRM_ActivitySumfields_Headles
         $this->addActivity($contactId, 1);
         foreach ($days as $day => $expectedNumber) {
             $value = $this->getCustomFieldValue($contactId, 'The number of activities in the last '.$day.' days');
-            self::assertEquals($expectedNumber+1, $value, 'Wrong value returned for '.$day.' day.');
+            self::assertEquals($expectedNumber + 1, $value, 'Wrong value returned for '.$day.' day.');
         }
     }
+
     public function testDateOfActivities()
     {
-        $settings = new CRM_ActivitySumfields_Config(E::LONG_NAME);
+        $settings = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         self::assertTrue($settings->updateSetting('activity_sumfields_date_activity_type_ids', [1]));
         self::assertTrue($settings->updateSetting('activity_sumfields_date_record_type_id', [2]));
 
