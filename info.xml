@@ -2,7 +2,7 @@
 <extension key="sumfields-addon-activity" type="module">
     <file>sumfields_addon_activity</file>
     <name>Summary Fields for Activities</name>
-    <description>Summary fields for the numbers and date of activities.</description>
+    <description>Summary fields for activities</description>
     <license>AGPL-3.0</license>
     <maintainer>
         <author>akosgarai</author>
