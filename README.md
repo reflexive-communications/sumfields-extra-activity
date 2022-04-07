@@ -1,5 +1,7 @@
 # sumfields-addon-activity
 
+[![CI](https://github.com/reflexive-communications/sumfields-addon-activity/actions/workflows/main.yml/badge.svg)](https://github.com/reflexive-communications/sumfields-addon-activity/actions/workflows/main.yml)
+
 This extension provides additional summary fields for calculating the number of activities in the given last n days, and
 the date of the last activity. The type of the activities, the status of the activities and the role of the contact
 could be configured on the summary fields admin screen `Administer > Customize Data and Screens > Summary Fields`.
