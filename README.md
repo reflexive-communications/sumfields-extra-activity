@@ -23,31 +23,31 @@ The configuration is stored in a setting database. The setting storage provided 
 deprecated solution, that causes deprecation log entries and test execution errors, so that i decided to replace it in
 this implementation.
 
-- Activity Types - The selected activity types (you can choose multiple) will be counted. If you left it empty, it will
-  fallback to every activity type.
-- Activity Statuses - The selected activity statuses (you can choose multiple) will be counted. If you left it empty, it
-  will fallback to every activity status.
-- Activity Record Type - The selected participant role (you can choose only one) will be counted. (source, target or
-  assignee)
+-   Activity Types - The selected activity types (you can choose multiple) will be counted. If you left it empty, it will
+    fallback to every activity type.
+-   Activity Statuses - The selected activity statuses (you can choose multiple) will be counted. If you left it empty, it
+    will fallback to every activity status.
+-   Activity Record Type - The selected participant role (you can choose only one) will be counted. (source, target or
+    assignee)
 
 ### Number of activities fields
 
-- The number of activities in the last 30 days.
-- The number of activities in the last 60 days.
-- The number of activities in the last 90 days.
-- The number of activities in the last 180 days.
-- The number of activities in the last 365 days.
-- The number of activities in the last 730 days.
+-   The number of activities in the last 30 days.
+-   The number of activities in the last 60 days.
+-   The number of activities in the last 90 days.
+-   The number of activities in the last 180 days.
+-   The number of activities in the last 365 days.
+-   The number of activities in the last 730 days.
 
 ### Date of activities fields
 
-- The date of the last activity.
+-   The date of the last activity.
 
 ## Requirements
 
-* PHP v7.4+
-* CiviCRM v5.43
-* net.ourpowerbase.sumfields
+-   PHP v7.4+
+-   CiviCRM v5.43
+-   net.ourpowerbase.sumfields
 
 ## Installation (CLI, Git)
 
@@ -61,4 +61,4 @@ cv en sumfields-addon-activity
 
 ## Changes
 
-- In v1.1.0 the setting database has been extended with the date of activity configuration keys.
+-   In v1.1.0 the setting database has been extended with the date of activity configuration keys.
