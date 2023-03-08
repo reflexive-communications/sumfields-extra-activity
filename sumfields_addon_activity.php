@@ -89,7 +89,6 @@ function sumfields_addon_activity_civicrm_upgrade($op, CRM_Queue_Queue $queue = 
 
 /**
  * Implements hook_civicrm_managed().
- *
  * Generate a list of entities to create/deactivate/delete when this module
  * is installed, disabled, uninstalled.
  *
@@ -102,7 +101,6 @@ function sumfields_addon_activity_civicrm_managed(&$entities)
 
 /**
  * Implements hook_civicrm_caseTypes().
- *
  * Add CiviCase types provided by this extension.
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
@@ -114,7 +112,6 @@ function sumfields_addon_activity_civicrm_caseTypes(&$caseTypes)
 
 /**
  * Implements hook_civicrm_angularModules().
- *
  * Add Angular modules provided by this extension.
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
@@ -137,7 +134,6 @@ function sumfields_addon_activity_civicrm_alterSettingsFolders(&$metaDataFolders
 
 /**
  * Implements hook_civicrm_entityTypes().
- *
  * Declare entity types provided by this module.
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes

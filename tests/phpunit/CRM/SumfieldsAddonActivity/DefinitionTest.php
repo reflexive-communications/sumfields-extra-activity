@@ -21,7 +21,6 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends CRM_SumfieldsAddonActivi
      * Create contact
      *
      * @return int Contact ID
-     *
      * @throws \API_Exception
      * @throws \Civi\API\Exception\UnauthorizedException
      */
@@ -33,6 +32,7 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends CRM_SumfieldsAddonActivi
         self::assertCount(1, $result, 'Failed to create contact');
         $contact = $result->first();
         self::assertArrayHasKey('id', $contact, 'Contact ID not found');
+
         return (int)$contact['id'];
     }
 
@@ -43,7 +43,6 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends CRM_SumfieldsAddonActivi
      * @param string $customFieldLabel Custom field label
      *
      * @return mixed Raw field value
-     *
      * @throws \API_Exception
      * @throws \CiviCRM_API3_Exception
      * @throws \Civi\API\Exception\UnauthorizedException
@@ -65,6 +64,7 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends CRM_SumfieldsAddonActivi
             'custom_field_id' => $customFieldId,
         ]);
         self::assertCount(1, $result['values'], 'Failed to find custom field value');
+
         return (array_shift($result['values']))['raw'];
     }
 
@@ -104,6 +104,7 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends CRM_SumfieldsAddonActivi
         self::assertCount(1, $result, 'Failed to create activity');
         $activity = $result->first();
         self::assertArrayHasKey('id', $activity, 'activity ID not found');
+
         return (int)$activity['id'];
     }
 

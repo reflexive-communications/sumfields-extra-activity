@@ -37,7 +37,6 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_SumfieldsAddonActivity_Upg
      * Database upgrade for the activity date fieldsets.
      *
      * @return bool
-     *
      * @throws CRM_Core_Exception
      */
     public function upgrade_5100()
@@ -54,6 +53,7 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_SumfieldsAddonActivity_Upg
         foreach ($needsToBeAdded as $newConfig) {
             $current[$newConfig] = $default[$newConfig];
         }
+
         return $config->update($current);
     }
 }

@@ -53,15 +53,14 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
                 E::path()
             );
         }
+
         return self::$instance;
     }
 
     /**
      * Adapter that lets you add normal (non-static) member functions to the queue.
-     *
      * Note: Each upgrader instance should only be associated with one
      * task-context; otherwise, this will be non-reentrant.
-     *
      * ```
      * CRM_SumfieldsAddonActivity_Upgrader_Base::_queueAdapter($ctx, 'methodName', 'arg1', 'arg2');
      * ```
@@ -73,6 +72,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
         $instance->ctx = array_shift($args);
         $instance->queue = $instance->ctx->queue;
         $method = array_shift($args);
+
         return call_user_func_array([$instance, $method], $args);
     }
 
@@ -101,6 +101,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
     public function executeCustomDataFile($relativePath)
     {
         $xml_file = $this->extensionDir.'/'.$relativePath;
+
         return $this->executeCustomDataFileByAbsPath($xml_file);
     }
 
@@ -116,6 +117,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
     {
         $import = new CRM_Utils_Migrate_Import();
         $import->run($xml_file);
+
         return true;
     }
 
@@ -133,6 +135,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
             CIVICRM_DSN,
             $this->extensionDir.DIRECTORY_SEPARATOR.$relativePath
         );
+
         return true;
     }
 
@@ -160,12 +163,12 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
             null,
             true
         );
+
         return true;
     }
 
     /**
      * Run one SQL query.
-     *
      * This is just a wrapper for CRM_Core_DAO::executeSql, but it
      * provides syntactic sugar for queueing several tasks that
      * run different queries
@@ -176,15 +179,14 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
     {
         // FIXME verify that we raise an exception on error
         CRM_Core_DAO::executeQuery($query, $params);
+
         return true;
     }
 
     /**
      * Syntactic sugar for enqueuing a task which calls a function in this class.
-     *
      * The task is weighted so that it is processed
      * as part of the currently-pending revision.
-     *
      * After passing the $funcName, you can also pass parameters that will go to
      * the function. Note that all params must be serializable.
      */
@@ -197,6 +199,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
             $args,
             $title
         );
+
         return $this->queue->createItem($task, ['weight' => -1]);
     }
 
@@ -288,6 +291,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
         if (!$revision) {
             $revision = $this->getCurrentRevisionDeprecated();
         }
+
         return $revision;
     }
 
@@ -297,6 +301,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
         if ($revision = \Civi::settings()->get($key)) {
             $this->revisionStorageIsDeprecated = true;
         }
+
         return $revision;
     }
 
@@ -305,6 +310,7 @@ class CRM_SumfieldsAddonActivity_Upgrader_Base
         CRM_Core_BAO_Extension::setSchemaVersion($this->extensionName, $revision);
         // clean up legacy schema version store (CRM-19252)
         $this->deleteDeprecatedRevision();
+
         return true;
     }
 
