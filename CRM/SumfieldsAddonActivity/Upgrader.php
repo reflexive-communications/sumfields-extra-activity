@@ -3,7 +3,7 @@
 /**
  * Collection of upgrade steps.
  */
-class CRM_SumfieldsAddonActivity_Upgrader extends CRM_SumfieldsAddonActivity_Upgrader_Base
+class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
 {
     /**
      * Install process. Init database.
