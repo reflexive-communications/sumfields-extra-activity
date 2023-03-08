@@ -5,6 +5,7 @@ use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 class CRM_SumfieldsAddonActivity_Service
 {
     public const MULTIPLE_OPTIONS = ['multiple' => true, 'class' => 'crm-select2 huge'];
+
     public const SINGLE_OPTIONS = ['multiple' => false, 'class' => 'crm-select2 huge'];
 
     /**
@@ -173,7 +174,8 @@ class CRM_SumfieldsAddonActivity_Service
                 'weight' => '15',
                 'text_length' => '32',
                 'trigger_table' => 'civicrm_activity_contact',
-                'trigger_sql' => self::rewriteSql('(
+                'trigger_sql' => self::rewriteSql(
+                    '(
                     SELECT COALESCE(COUNT(1), 0)
                     FROM civicrm_activity_contact ac
                     LEFT JOIN civicrm_activity a ON a.id = ac.activity_id
@@ -182,7 +184,8 @@ class CRM_SumfieldsAddonActivity_Service
                     AND a.activity_type_id IN (%activity_sumfields_activity_type_ids)
                     AND a.status_id IN (%activity_sumfields_activity_status_ids)
                     AND a.activity_date_time >= DATE_SUB(CURDATE(), INTERVAL '.$day.' DAY)
-                )'),
+                )'
+                ),
             ];
         }
         // Add new optgroup that will contain the setting parameters for the activities
@@ -206,7 +209,8 @@ class CRM_SumfieldsAddonActivity_Service
             'weight' => '15',
             'text_length' => '32',
             'trigger_table' => 'civicrm_activity_contact',
-            'trigger_sql' => self::rewriteSql('(
+            'trigger_sql' => self::rewriteSql(
+                '(
                 SELECT MAX(a.activity_date_time)
                 FROM civicrm_activity_contact ac
                 LEFT JOIN civicrm_activity a ON a.id = ac.activity_id
@@ -214,7 +218,8 @@ class CRM_SumfieldsAddonActivity_Service
                 AND ac.record_type_id = %activity_sumfields_date_record_type_id
                 AND a.activity_type_id IN (%activity_sumfields_date_activity_type_ids)
                 AND a.status_id IN (%activity_sumfields_date_activity_status_ids)
-            )'),
+            )'
+            ),
         ];
         // Add new optgroup that will contain the setting parameters for the activities
         $custom['optgroups']['activity_sumfields_date_of_activity'] = [

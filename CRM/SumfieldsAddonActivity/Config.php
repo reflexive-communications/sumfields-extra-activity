@@ -26,7 +26,6 @@ class CRM_SumfieldsAddonActivity_Config extends CRM_RcBase_Config
      * @param array $settings the data to save
      *
      * @return bool the status of the update process.
-     *
      * @throws CRM_Core_Exception.
      */
     public function updateSetting(string $key, array $settings): bool
@@ -35,6 +34,7 @@ class CRM_SumfieldsAddonActivity_Config extends CRM_RcBase_Config
         parent::load();
         $configuration = parent::get();
         $configuration[$key] = $settings;
+
         return parent::update($configuration);
     }
 
@@ -44,7 +44,6 @@ class CRM_SumfieldsAddonActivity_Config extends CRM_RcBase_Config
      * @param string $key
      *
      * @return array the settings for the key
-     *
      * @throws CRM_Core_Exception.
      */
     public function getSetting(string $key): array
@@ -52,6 +51,7 @@ class CRM_SumfieldsAddonActivity_Config extends CRM_RcBase_Config
         // load latest config
         parent::load();
         $configuration = parent::get();
+
         return isset($configuration[$key]) ? $configuration[$key] : [];
     }
 }
