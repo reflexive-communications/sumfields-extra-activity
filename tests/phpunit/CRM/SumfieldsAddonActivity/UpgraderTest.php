@@ -12,7 +12,7 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends CRM_SumfieldsAddonActivity
      */
     public function testInstall()
     {
-        $installer = new CRM_SumfieldsAddonActivity_Upgrader("ext_test", ".");
+        $installer = new CRM_SumfieldsAddonActivity_Upgrader();
         self::assertEmpty($installer->install());
     }
 
@@ -21,7 +21,7 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends CRM_SumfieldsAddonActivity
      */
     public function testUninstall()
     {
-        $installer = new CRM_SumfieldsAddonActivity_Upgrader("ext_test", ".");
+        $installer = new CRM_SumfieldsAddonActivity_Upgrader();
         self::assertEmpty($installer->install());
         self::assertEmpty($installer->uninstall());
     }
@@ -31,9 +31,9 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends CRM_SumfieldsAddonActivity
      */
     public function testUpdate5100()
     {
-        $installer = new CRM_SumfieldsAddonActivity_Upgrader("ext_test", ".");
+        $installer = new CRM_SumfieldsAddonActivity_Upgrader();
         self::assertEmpty($installer->install());
-        $config = new CRM_SumfieldsAddonActivity_Config("ext_test");
+        $config = new CRM_SumfieldsAddonActivity_Config(CRM_SumfieldsAddonActivity_ExtensionUtil::LONG_NAME);
         $config->load();
         $cfg = $config->get();
         $needsToBeRemoved = ['activity_sumfields_date_activity_type_ids', 'activity_sumfields_date_activity_status_ids', 'activity_sumfields_date_record_type_id'];

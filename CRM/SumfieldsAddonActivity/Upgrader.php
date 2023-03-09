@@ -1,9 +1,11 @@
 <?php
 
+use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+
 /**
  * Collection of upgrade steps.
  */
-class CRM_SumfieldsAddonActivity_Upgrader extends CRM_SumfieldsAddonActivity_Upgrader_Base
+class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
 {
     /**
      * Install process. Init database.
@@ -12,10 +14,10 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_SumfieldsAddonActivity_Upg
      */
     public function install()
     {
-        $config = new CRM_SumfieldsAddonActivity_Config($this->extensionName);
+        $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         // Create default configs
         if (!$config->create()) {
-            throw new CRM_Core_Exception($this->extensionName.ts(' could not create configs in database'));
+            throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not create configs in database'));
         }
     }
 
@@ -26,10 +28,10 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_SumfieldsAddonActivity_Upg
      */
     public function uninstall()
     {
-        $config = new CRM_SumfieldsAddonActivity_Config($this->extensionName);
+        $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         // delete current configs
         if (!$config->remove()) {
-            throw new CRM_Core_Exception($this->extensionName.ts(' could not remove configs from database'));
+            throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not remove configs from database'));
         }
     }
 
@@ -41,7 +43,7 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_SumfieldsAddonActivity_Upg
      */
     public function upgrade_5100()
     {
-        $config = new CRM_SumfieldsAddonActivity_Config($this->extensionName);
+        $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         $default = $config->defaultConfiguration();
         $config->load();
         $current = $config->get();
