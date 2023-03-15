@@ -2,26 +2,19 @@
 
 namespace Civi\SumfieldsAddonActivity;
 
+use Civi\Test;
 use Civi\Test\HeadlessInterface;
 use Civi\Test\HookInterface;
 use Civi\Test\TransactionalInterface;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Testcases for Service class.
  *
  * @group headless
  */
-class HeadlessTestCase extends \PHPUnit\Framework\TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
+class HeadlessTestCase extends TestCase implements HeadlessInterface, HookInterface, TransactionalInterface
 {
-    public function setUpHeadless()
-    {
-        return \Civi\Test::headless()
-            ->install('rc-base')
-            ->installMe(__DIR__)
-            ->install('net.ourpowerbase.sumfields')
-            ->apply();
-    }
-
     /**
      * Apply a forced rebuild of DB, thus
      * create a clean DB before running tests
@@ -30,11 +23,18 @@ class HeadlessTestCase extends \PHPUnit\Framework\TestCase implements HeadlessIn
      */
     public static function setUpBeforeClass(): void
     {
-        // Resets DB and install depended extension
-        \Civi\Test::headless()
+        // Resets DB
+        Test::headless()
             ->install('rc-base')
             ->installMe(__DIR__)
             ->install('net.ourpowerbase.sumfields')
             ->apply(true);
+    }
+
+    /**
+     * @return void
+     */
+    public function setUpHeadless(): void
+    {
     }
 }
