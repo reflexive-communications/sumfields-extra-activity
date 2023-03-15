@@ -7,16 +7,10 @@ use Civi\SumfieldsAddonActivity\HeadlessTestCase;
 use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
- * Testcases for the definitions.
- *
  * @group headless
  */
 class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
 {
-    public function setUpHeadless()
-    {
-    }
-
     /**
      * Create contact
      *

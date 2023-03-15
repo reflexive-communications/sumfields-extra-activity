@@ -3,8 +3,6 @@
 use Civi\SumfieldsAddonActivity\HeadlessTestCase;
 
 /**
- * Testcases for the configuration.
- *
  * @group headless
  */
 class CRM_SumfieldsAddonActivity_ConfigTest extends HeadlessTestCase

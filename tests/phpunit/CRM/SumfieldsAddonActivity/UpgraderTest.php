@@ -3,8 +3,6 @@
 use Civi\SumfieldsAddonActivity\HeadlessTestCase;
 
 /**
- * Installer application tests.
- *
  * @group headless
  */
 class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase

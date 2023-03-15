@@ -9,8 +9,6 @@ use Civi\Test\TransactionalInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Testcases for Service class.
- *
  * @group headless
  */
 class HeadlessTestCase extends TestCase implements HeadlessInterface, HookInterface, TransactionalInterface

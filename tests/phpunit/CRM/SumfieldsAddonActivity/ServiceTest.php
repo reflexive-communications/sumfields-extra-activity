@@ -4,8 +4,6 @@ use Civi\SumfieldsAddonActivity\HeadlessTestCase;
 use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
- * Testcases for Service class.
- *
  * @group headless
  */
 class CRM_SumfieldsAddonActivity_ServiceTest extends HeadlessTestCase
