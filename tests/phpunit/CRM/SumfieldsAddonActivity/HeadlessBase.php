@@ -35,28 +35,4 @@ class CRM_SumfieldsAddonActivity_HeadlessBase extends \PHPUnit\Framework\TestCas
             ->install('net.ourpowerbase.sumfields')
             ->apply(true);
     }
-
-    /**
-     * Create a clean DB after running tests
-     *
-     * @throws CRM_Extension_Exception_ParseException
-     */
-    public static function tearDownAfterClass(): void
-    {
-        \Civi\Test::headless()
-            ->uninstallMe(__DIR__)
-            ->uninstall('rc-base')
-            ->uninstall('net.ourpowerbase.sumfields')
-            ->apply(true);
-    }
-
-    public function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
-    }
 }
