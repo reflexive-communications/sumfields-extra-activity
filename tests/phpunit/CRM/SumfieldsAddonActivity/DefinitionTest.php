@@ -124,7 +124,7 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
             $activityDate = date('Y-m-d H:i', strtotime($before.' days ago'));
             $activityId = $this->addActivity($contactId, 1);
             // update activity with sql
-            $sql = "UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2";
+            $sql = 'UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2';
             $params = [
                 1 => [$activityDate, 'String'],
                 2 => [$activityId, 'Int'],
@@ -164,7 +164,7 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
         $activityDate = date('Y-m-d H:i', strtotime('5 days ago'));
         $activityId = $this->addActivity($contactId, 1);
         // update activity with sql
-        $sql = "UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2";
+        $sql = 'UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2';
         $params = [
             1 => [$activityDate, 'String'],
             2 => [$activityId, 'Int'],
