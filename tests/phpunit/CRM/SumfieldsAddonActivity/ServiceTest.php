@@ -1,5 +1,6 @@
 <?php
 
+use Civi\SumfieldsAddonActivity\HeadlessTestCase;
 use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
@@ -7,7 +8,7 @@ use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
  *
  * @group headless
  */
-class CRM_SumfieldsAddonActivity_ServiceTest extends CRM_SumfieldsAddonActivity_HeadlessBase
+class CRM_SumfieldsAddonActivity_ServiceTest extends HeadlessTestCase
 {
     /*
      * It tests the sumfieldsDefinition function.

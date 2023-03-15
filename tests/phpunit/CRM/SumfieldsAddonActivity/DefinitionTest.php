@@ -1,17 +1,17 @@
 <?php
 
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
-
 use Civi\Api4\Activity;
 use Civi\Api4\Contact;
 use Civi\Api4\CustomField;
+use Civi\SumfieldsAddonActivity\HeadlessTestCase;
+use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
  * Testcases for the definitions.
  *
  * @group headless
  */
-class CRM_SumfieldsAddonActivity_DefinitionTest extends CRM_SumfieldsAddonActivity_HeadlessBase
+class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
 {
     public function setUpHeadless()
     {
