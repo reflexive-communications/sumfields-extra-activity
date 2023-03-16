@@ -2,17 +2,12 @@
 
 require_once 'sumfields_addon_activity.civix.php';
 
-// phpcs:disable
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
-
-// phpcs:enable
-
 /**
  * Implements hook_civicrm_config().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config/
  */
-function sumfields_addon_activity_civicrm_config(&$config)
+function sumfields_addon_activity_civicrm_config(&$config): void
 {
     _sumfields_addon_activity_civix_civicrm_config($config);
 }
@@ -20,7 +15,7 @@ function sumfields_addon_activity_civicrm_config(&$config)
 /**
  * Implements hook_civicrm_sumfields_definitions()
  */
-function sumfields_addon_activity_civicrm_sumfields_definitions(&$custom)
+function sumfields_addon_activity_civicrm_sumfields_definitions(&$custom): void
 {
     CRM_SumfieldsAddonActivity_Service::sumfieldsDefinition($custom);
 }
@@ -30,7 +25,7 @@ function sumfields_addon_activity_civicrm_sumfields_definitions(&$custom)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_buildForm
  */
-function sumfields_addon_activity_civicrm_buildForm($formName, &$form)
+function sumfields_addon_activity_civicrm_buildForm($formName, &$form): void
 {
     CRM_SumfieldsAddonActivity_Service::buildForm($formName, $form);
 }
@@ -40,7 +35,7 @@ function sumfields_addon_activity_civicrm_buildForm($formName, &$form)
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postProcess
  */
-function sumfields_addon_activity_civicrm_postProcess($formName, &$form)
+function sumfields_addon_activity_civicrm_postProcess($formName, &$form): void
 {
     CRM_SumfieldsAddonActivity_Service::postProcess($formName, $form);
 }
