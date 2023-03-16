@@ -1,11 +1,11 @@
 <?php
 
+use Civi\SumfieldsAddonActivity\HeadlessTestCase;
+
 /**
- * Installer application tests.
- *
  * @group headless
  */
-class CRM_SumfieldsAddonActivity_UpgraderTest extends CRM_SumfieldsAddonActivity_HeadlessBase
+class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
 {
     /**
      * Test the install process.
