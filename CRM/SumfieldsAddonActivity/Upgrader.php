@@ -12,7 +12,7 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
      *
      * @throws CRM_Core_Exception
      */
-    public function install()
+    public function install(): void
     {
         $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         // Create default configs
@@ -26,7 +26,7 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
      *
      * @throws CRM_Core_Exception
      */
-    public function uninstall()
+    public function uninstall(): void
     {
         $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         // delete current configs
@@ -41,7 +41,7 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
      * @return bool
      * @throws CRM_Core_Exception
      */
-    public function upgrade_5100()
+    public function upgrade_5100(): bool
     {
         $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
         $default = $config->defaultConfiguration();
