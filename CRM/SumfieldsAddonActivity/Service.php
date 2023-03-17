@@ -12,13 +12,20 @@ class CRM_SumfieldsAddonActivity_Service
      * This function extends the sumfield definition list with
      * our ones.
      */
-    public static function sumfieldsDefinition(&$custom)
+    public static function sumfieldsDefinition(&$custom): void
     {
         self::sumfieldsDefinitionNumberOfActivities($custom);
         self::sumfieldsDefinitionLatestActivity($custom);
     }
 
-    public static function buildForm($formName, &$form)
+    /**
+     * @param $formName
+     * @param $form
+     *
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
+    public static function buildForm($formName, &$form): void
     {
         if ($formName !== 'CRM_Sumfields_Form_SumFields') {
             return;
@@ -71,12 +78,13 @@ class CRM_SumfieldsAddonActivity_Service
     }
 
     /**
-     * This function handles the save process of the activity config.
-     *
-     * @param string $formName
+     * @param $formName
      * @param $form
+     *
+     * @return void
+     * @throws \CRM_Core_Exception
      */
-    public static function postProcess($formName, &$form)
+    public static function postProcess($formName, &$form): void
     {
         if ($formName == 'CRM_Sumfields_Form_SumFields') {
             // Save option fields as submitted.
@@ -115,6 +123,7 @@ class CRM_SumfieldsAddonActivity_Service
      * Replace extend summary field %variables with the appropriate values.
      *
      * @return string Modified $sql.
+     * @throws \CRM_Core_Exception
      */
     private static function rewriteSql($sql): string
     {

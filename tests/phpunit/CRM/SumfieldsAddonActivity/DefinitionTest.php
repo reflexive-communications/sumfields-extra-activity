@@ -86,8 +86,13 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
      * source and target.
      *
      * @param int $contactId as source and target.
+     * @param int $activityTypeId
+     *
+     * @return int
+     * @throws \API_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
      */
-    private function addActivity(int $contactId, int $activityTypeId)
+    private function addActivity(int $contactId, int $activityTypeId): int
     {
         $result = Activity::create(false)
             ->addValue('activity_type_id', $activityTypeId)
@@ -102,13 +107,20 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
         return (int)$activity['id'];
     }
 
+    /**
+     * @param $custom
+     *
+     * @return void
+     */
     public function hook_civicrm_sumfields_definitions(&$custom)
     {
         CRM_SumfieldsAddonActivity_Service::sumfieldsDefinition($custom);
     }
 
     /**
+     * @return void
      * @throws \API_Exception
+     * @throws \CRM_Core_Exception
      * @throws \CiviCRM_API3_Exception
      * @throws \Civi\API\Exception\UnauthorizedException
      */
@@ -154,6 +166,13 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
         }
     }
 
+    /**
+     * @return void
+     * @throws \API_Exception
+     * @throws \CRM_Core_Exception
+     * @throws \CiviCRM_API3_Exception
+     * @throws \Civi\API\Exception\UnauthorizedException
+     */
     public function testDateOfActivities()
     {
         $settings = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
