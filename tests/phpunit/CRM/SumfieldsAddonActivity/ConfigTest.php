@@ -8,7 +8,7 @@ use Civi\SumfieldsAddonActivity\HeadlessTestCase;
 class CRM_SumfieldsAddonActivity_ConfigTest extends HeadlessTestCase
 {
     /**
-     * It checks that the defaultConfiguration function works well.
+     * @return void
      */
     public function testDefaultConfiguration()
     {
@@ -30,7 +30,8 @@ class CRM_SumfieldsAddonActivity_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the updateSetting function works well.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testUpdateSetting()
     {
@@ -52,7 +53,8 @@ class CRM_SumfieldsAddonActivity_ConfigTest extends HeadlessTestCase
     }
 
     /**
-     * It checks that the getSetting function works well.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testGetSetting()
     {

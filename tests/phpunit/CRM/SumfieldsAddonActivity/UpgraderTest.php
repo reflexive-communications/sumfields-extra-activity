@@ -8,7 +8,8 @@ use Civi\SumfieldsAddonActivity\HeadlessTestCase;
 class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
 {
     /**
-     * Test the install process.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testInstall()
     {
@@ -17,7 +18,8 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
     }
 
     /**
-     * Test the uninstall process.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testUninstall()
     {
@@ -26,8 +28,9 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
         self::assertEmpty($installer->uninstall());
     }
 
-    /*
-     * Check the settings key update.
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testUpdate5100()
     {

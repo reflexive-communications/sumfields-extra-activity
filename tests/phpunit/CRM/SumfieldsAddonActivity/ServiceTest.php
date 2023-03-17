@@ -8,8 +8,8 @@ use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
  */
 class CRM_SumfieldsAddonActivity_ServiceTest extends HeadlessTestCase
 {
-    /*
-     * It tests the sumfieldsDefinition function.
+    /**
+     * @return void
      */
     public function testSumfieldsDefinition()
     {
@@ -24,8 +24,9 @@ class CRM_SumfieldsAddonActivity_ServiceTest extends HeadlessTestCase
         self::assertTrue(array_key_exists('activity_sumfields_date_of_activity', $definitions['optgroups']));
     }
 
-    /*
-     * It tests the buildForm function.
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testBuildFormDoesNothingWhenTheFormIsIrrelevant()
     {
@@ -33,6 +34,10 @@ class CRM_SumfieldsAddonActivity_ServiceTest extends HeadlessTestCase
         self::assertEmpty(CRM_SumfieldsAddonActivity_Service::buildForm('irrelevant-form-name', $form));
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function testBuildForm()
     {
         $form = new CRM_Sumfields_Form_SumFields();
@@ -42,7 +47,8 @@ class CRM_SumfieldsAddonActivity_ServiceTest extends HeadlessTestCase
     }
 
     /**
-     * Test the postProcess function.
+     * @return void
+     * @throws \CRM_Core_Exception
      */
     public function testPostProcessDoesNothingWhenTheFormIsIrrelevant()
     {
@@ -50,6 +56,10 @@ class CRM_SumfieldsAddonActivity_ServiceTest extends HeadlessTestCase
         self::assertEmpty(CRM_SumfieldsAddonActivity_Service::postProcess('irrelevant-form-name', $form));
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function testPostProcessNotOnSubmit()
     {
         $form = new CRM_Sumfields_Form_SumFields();
@@ -69,6 +79,10 @@ class CRM_SumfieldsAddonActivity_ServiceTest extends HeadlessTestCase
         self::assertEmpty(CRM_SumfieldsAddonActivity_Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
     }
 
+    /**
+     * @return void
+     * @throws \CRM_Core_Exception
+     */
     public function testPostProcessOnSubmit()
     {
         $form = new CRM_Sumfields_Form_SumFields();
