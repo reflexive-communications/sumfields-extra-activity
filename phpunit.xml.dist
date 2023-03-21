@@ -6,6 +6,7 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          convertDeprecationsToExceptions="true"
+         failOnRisky="true"
          bootstrap="tests/phpunit/bootstrap.php"
          testdox="true">
     <coverage>
@@ -18,11 +19,10 @@
             <!-- Skip generated files -->
             <file>./sumfields_addon_activity.php</file>
             <file>./sumfields_addon_activity.civix.php</file>
-            <file>./CRM/SumfieldsAddonActivity/Upgrader/Base.php</file>
         </exclude>
     </coverage>
     <testsuites>
-        <testsuite name="My Test Suite">
+        <testsuite name="all">
             <directory>./tests/phpunit</directory>
         </testsuite>
     </testsuites>
