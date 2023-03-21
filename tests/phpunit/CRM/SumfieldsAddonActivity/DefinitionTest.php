@@ -136,12 +136,10 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
             $activityDate = date('Y-m-d H:i', strtotime($before.' days ago'));
             $activityId = $this->addActivity($contactId, 1);
             // update activity with sql
-            $sql = 'UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2';
-            $params = [
+            \Civi\RcBase\Utils\DB::query('UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2', [
                 1 => [$activityDate, 'String'],
-                2 => [$activityId, 'Int'],
-            ];
-            CRM_Core_DAO::executeQuery($sql, $params);
+                2 => [$activityId, 'Positive'],
+            ]);
         }
         // Enable fields
         $fields = [
@@ -183,12 +181,10 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
         $activityDate = date('Y-m-d H:i', strtotime('5 days ago'));
         $activityId = $this->addActivity($contactId, 1);
         // update activity with sql
-        $sql = 'UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2';
-        $params = [
+        \Civi\RcBase\Utils\DB::query('UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2', [
             1 => [$activityDate, 'String'],
-            2 => [$activityId, 'Int'],
-        ];
-        CRM_Core_DAO::executeQuery($sql, $params);
+            2 => [$activityId, 'Positive'],
+        ]);
         // Enable fields
         $fields = [
             'date_of_the_last_activity',
