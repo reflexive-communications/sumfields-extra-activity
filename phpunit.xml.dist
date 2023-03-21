@@ -18,7 +18,6 @@
             <!-- Skip generated files -->
             <file>./sumfields_addon_activity.php</file>
             <file>./sumfields_addon_activity.civix.php</file>
-            <file>./CRM/SumfieldsAddonActivity/Upgrader/Base.php</file>
         </exclude>
     </coverage>
     <testsuites>
