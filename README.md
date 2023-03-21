@@ -15,7 +15,7 @@ the `Administer > Customize Data and Screens > Summary Fields` menu.
 
 **Activity Fields**
 
-![activity fields](./assets/docs/admin-sumfields-activities.png)
+![activity fields](./images/admin-sumfields-activities.png)
 
 ### Settings
 
