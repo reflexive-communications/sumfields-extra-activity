@@ -26,4 +26,5 @@ cv en sumfields-addon-activity
 
 ## Getting Started
 
-You can set them on "Summary Fields Administration" form. This form can be reached  on **Administer > Customize Data and Screens > Summary Fields**.
+You can set them on "Summary Fields Administration" form.
+This form can be reached  on **Administer > Customize Data and Screens > Summary Fields**.
