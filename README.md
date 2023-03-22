@@ -46,10 +46,11 @@ this implementation.
 ## Requirements
 
 -   PHP v7.4+
--   CiviCRM v5.43
+-   CiviCRM v5.43+
 -   net.ourpowerbase.sumfields
+-   rc-base
 
-## Installation (CLI, Git)
+## Installation
 
 Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) repo for this extension and install it
 with the command-line tool [cv](https://github.com/civicrm/cv).
