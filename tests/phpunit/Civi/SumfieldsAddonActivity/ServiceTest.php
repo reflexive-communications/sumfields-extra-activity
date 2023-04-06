@@ -2,6 +2,8 @@
 
 namespace Civi\SumfieldsAddonActivity;
 
+use CRM_Activity_BAO_Activity;
+use CRM_Activity_BAO_ActivityContact;
 use CRM_Sumfields_Form_SumFields;
 use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
