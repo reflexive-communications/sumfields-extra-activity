@@ -1,6 +1,11 @@
 <?php
 
-class CRM_SumfieldsAddonActivity_Config extends CRM_RcBase_Config
+namespace Civi\SumfieldsAddonActivity;
+
+use CRM_Core_Exception;
+use CRM_RcBase_Config;
+
+class Config extends CRM_RcBase_Config
 {
     /**
      * Provides a default configuration object.

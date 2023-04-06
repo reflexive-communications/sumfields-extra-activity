@@ -1,6 +1,8 @@
 <?php
 
+use Civi\SumfieldsAddonActivity\Config;
 use Civi\SumfieldsAddonActivity\HeadlessTestCase;
+use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
  * @group headless
@@ -36,7 +38,7 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
     {
         $installer = new CRM_SumfieldsAddonActivity_Upgrader();
         self::assertEmpty($installer->install());
-        $config = new CRM_SumfieldsAddonActivity_Config(CRM_SumfieldsAddonActivity_ExtensionUtil::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $config->load();
         $cfg = $config->get();
         $needsToBeRemoved = ['activity_sumfields_date_activity_type_ids', 'activity_sumfields_date_activity_status_ids', 'activity_sumfields_date_record_type_id'];

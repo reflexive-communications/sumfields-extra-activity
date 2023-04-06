@@ -1,5 +1,6 @@
 <?php
 
+use Civi\SumfieldsAddonActivity\Config;
 use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
@@ -14,7 +15,7 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
      */
     public function install(): void
     {
-        $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         // Create default configs
         if (!$config->create()) {
             throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not create configs in database'));
@@ -28,7 +29,7 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
      */
     public function uninstall(): void
     {
-        $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         // delete current configs
         if (!$config->remove()) {
             throw new CRM_Core_Exception(E::LONG_NAME.ts(' could not remove configs from database'));
@@ -43,7 +44,7 @@ class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
      */
     public function upgrade_5100(): bool
     {
-        $config = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
+        $config = new Config(E::LONG_NAME);
         $default = $config->defaultConfiguration();
         $config->load();
         $current = $config->get();

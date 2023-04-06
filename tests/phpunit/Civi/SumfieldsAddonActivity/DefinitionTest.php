@@ -1,15 +1,16 @@
 <?php
 
+namespace Civi\SumfieldsAddonActivity;
+
 use Civi\Api4\Activity;
 use Civi\Api4\Contact;
 use Civi\Api4\CustomField;
-use Civi\SumfieldsAddonActivity\HeadlessTestCase;
 use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
  * @group headless
  */
-class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
+class DefinitionTest extends HeadlessTestCase
 {
     /**
      * Create contact
@@ -114,7 +115,7 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
      */
     public function hook_civicrm_sumfields_definitions(&$custom)
     {
-        CRM_SumfieldsAddonActivity_Service::sumfieldsDefinition($custom);
+        Service::sumfieldsDefinition($custom);
     }
 
     /**
@@ -126,7 +127,7 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
      */
     public function testNumberOfActivitiesInLastIntervals()
     {
-        $settings = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
+        $settings = new Config(E::LONG_NAME);
         self::assertTrue($settings->updateSetting('activity_sumfields_activity_type_ids', [1]));
         self::assertTrue($settings->updateSetting('activity_sumfields_record_type_id', [2]));
 
@@ -173,7 +174,7 @@ class CRM_SumfieldsAddonActivity_DefinitionTest extends HeadlessTestCase
      */
     public function testDateOfActivities()
     {
-        $settings = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
+        $settings = new Config(E::LONG_NAME);
         self::assertTrue($settings->updateSetting('activity_sumfields_date_activity_type_ids', [1]));
         self::assertTrue($settings->updateSetting('activity_sumfields_date_record_type_id', [2]));
 

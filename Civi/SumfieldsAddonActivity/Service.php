@@ -1,8 +1,14 @@
 <?php
 
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+namespace Civi\SumfieldsAddonActivity;
 
-class CRM_SumfieldsAddonActivity_Service
+use CRM_Activity_BAO_Activity;
+use CRM_Activity_BAO_ActivityContact;
+use CRM_Core_Smarty;
+use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+use CRM_Utils_Array;
+
+class Service
 {
     public const MULTIPLE_OPTIONS = ['multiple' => true, 'class' => 'crm-select2 huge'];
 
@@ -30,7 +36,7 @@ class CRM_SumfieldsAddonActivity_Service
         if ($formName !== 'CRM_Sumfields_Form_SumFields') {
             return;
         }
-        $settings = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
+        $settings = new Config(E::LONG_NAME);
         $labels = [
             'activity-type' => E::ts('Activity Types'),
             'activity-type-desc' => E::ts('Activity types to be used when calculating activity summary fields.'),
@@ -88,7 +94,7 @@ class CRM_SumfieldsAddonActivity_Service
     {
         if ($formName == 'CRM_Sumfields_Form_SumFields') {
             // Save option fields as submitted.
-            $settings = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
+            $settings = new Config(E::LONG_NAME);
             $settings->updateSetting(
                 'activity_sumfields_activity_type_ids',
                 CRM_Utils_Array::value('activity_sumfields_activity_type_ids', $form->_submitValues)
@@ -127,7 +133,7 @@ class CRM_SumfieldsAddonActivity_Service
      */
     private static function rewriteSql($sql): string
     {
-        $settings = new CRM_SumfieldsAddonActivity_Config(E::LONG_NAME);
+        $settings = new Config(E::LONG_NAME);
         // Note: most of these token replacements fill in a sql IN statement,
         // e.g. field_name IN (%token). That means if the token is empty, we
         // get a SQL error. So... for each of these, if the token is empty,
