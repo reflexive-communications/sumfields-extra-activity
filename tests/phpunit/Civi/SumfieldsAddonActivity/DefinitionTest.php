@@ -5,6 +5,7 @@ namespace Civi\SumfieldsAddonActivity;
 use Civi\Api4\Activity;
 use Civi\Api4\Contact;
 use Civi\Api4\CustomField;
+use Civi\RcBase\Utils\DB;
 use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
 
 /**
@@ -137,7 +138,7 @@ class DefinitionTest extends HeadlessTestCase
             $activityDate = date('Y-m-d H:i', strtotime($before.' days ago'));
             $activityId = $this->addActivity($contactId, 1);
             // update activity with sql
-            \Civi\RcBase\Utils\DB::query('UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2', [
+            DB::query('UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2', [
                 1 => [$activityDate, 'String'],
                 2 => [$activityId, 'Positive'],
             ]);
@@ -182,7 +183,7 @@ class DefinitionTest extends HeadlessTestCase
         $activityDate = date('Y-m-d H:i', strtotime('5 days ago'));
         $activityId = $this->addActivity($contactId, 1);
         // update activity with sql
-        \Civi\RcBase\Utils\DB::query('UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2', [
+        DB::query('UPDATE civicrm_activity SET created_date = %1, activity_date_time = %1 WHERE id =  %2', [
             1 => [$activityDate, 'String'],
             2 => [$activityId, 'Positive'],
         ]);
