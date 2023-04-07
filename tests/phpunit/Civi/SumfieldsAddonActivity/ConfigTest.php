@@ -1,11 +1,11 @@
 <?php
 
-use Civi\SumfieldsAddonActivity\HeadlessTestCase;
+namespace Civi\SumfieldsAddonActivity;
 
 /**
  * @group headless
  */
-class CRM_SumfieldsAddonActivity_ConfigTest extends HeadlessTestCase
+class ConfigTest extends HeadlessTestCase
 {
     /**
      * @return void
@@ -20,7 +20,7 @@ class CRM_SumfieldsAddonActivity_ConfigTest extends HeadlessTestCase
             'activity_sumfields_date_activity_status_ids',
             'activity_sumfields_date_record_type_id',
         ];
-        $config = new CRM_SumfieldsAddonActivity_Config('config_test');
+        $config = new Config('config_test');
         $defaults = $config->defaultConfiguration();
         foreach ($expectedKeys as $k) {
             self::assertTrue(array_key_exists($k, $defaults));
@@ -43,7 +43,7 @@ class CRM_SumfieldsAddonActivity_ConfigTest extends HeadlessTestCase
             'activity_sumfields_date_activity_status_ids' => [2, 3, 5],
             'activity_sumfields_date_record_type_id' => [1],
         ];
-        $config = new CRM_SumfieldsAddonActivity_Config('config_test');
+        $config = new Config('config_test');
         self::assertTrue($config->create());
         foreach ($testData as $key => $value) {
             self::assertTrue($config->updateSetting($key, $value));
@@ -66,7 +66,7 @@ class CRM_SumfieldsAddonActivity_ConfigTest extends HeadlessTestCase
             'activity_sumfields_date_activity_status_ids' => [2, 3, 5],
             'activity_sumfields_date_record_type_id' => [1],
         ];
-        $config = new CRM_SumfieldsAddonActivity_Config('config_test');
+        $config = new Config('config_test');
         $config->update($testData);
         foreach ($testData as $key => $value) {
             self::assertSame($value, $config->getSetting($key));

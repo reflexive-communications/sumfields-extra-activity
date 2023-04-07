@@ -1,5 +1,7 @@
 <?php
 
+use Civi\SumfieldsAddonActivity\Service;
+
 require_once 'sumfields_addon_activity.civix.php';
 
 /**
@@ -17,7 +19,7 @@ function sumfields_addon_activity_civicrm_config(&$config): void
  */
 function sumfields_addon_activity_civicrm_sumfields_definitions(&$custom): void
 {
-    CRM_SumfieldsAddonActivity_Service::sumfieldsDefinition($custom);
+    Service::sumfieldsDefinition($custom);
 }
 
 /**
@@ -27,7 +29,7 @@ function sumfields_addon_activity_civicrm_sumfields_definitions(&$custom): void
  */
 function sumfields_addon_activity_civicrm_buildForm($formName, &$form): void
 {
-    CRM_SumfieldsAddonActivity_Service::buildForm($formName, $form);
+    Service::buildForm($formName, $form);
 }
 
 /**
@@ -37,5 +39,5 @@ function sumfields_addon_activity_civicrm_buildForm($formName, &$form): void
  */
 function sumfields_addon_activity_civicrm_postProcess($formName, &$form): void
 {
-    CRM_SumfieldsAddonActivity_Service::postProcess($formName, $form);
+    Service::postProcess($formName, $form);
 }
