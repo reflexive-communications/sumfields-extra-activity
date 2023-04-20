@@ -5,7 +5,7 @@ on:
       - main
 env:
   INSTALL_DIR: /srv/www/civi-zero
-  EXTENSION_NAME: sumfields-addon-activity
+  EXTENSION_NAME: sumfields-extra-activity
 jobs:
   format:
     name: Check format
