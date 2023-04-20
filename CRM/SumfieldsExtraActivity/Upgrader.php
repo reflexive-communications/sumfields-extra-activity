@@ -1,12 +1,12 @@
 <?php
 
-use Civi\SumfieldsAddonActivity\Config;
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+use Civi\SumfieldsExtraActivity\Config;
+use CRM_SumfieldsExtraActivity_ExtensionUtil as E;
 
 /**
  * Collection of upgrade steps.
  */
-class CRM_SumfieldsAddonActivity_Upgrader extends CRM_Extension_Upgrader_Base
+class CRM_SumfieldsExtraActivity_Upgrader extends CRM_Extension_Upgrader_Base
 {
     /**
      * Install process. Init database.

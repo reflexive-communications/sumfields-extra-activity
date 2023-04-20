@@ -1,11 +1,11 @@
 <?php
 
-namespace Civi\SumfieldsAddonActivity;
+namespace Civi\SumfieldsExtraActivity;
 
 use CRM_Activity_BAO_Activity;
 use CRM_Activity_BAO_ActivityContact;
 use CRM_Sumfields_Form_SumFields;
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+use CRM_SumfieldsExtraActivity_ExtensionUtil as E;
 
 /**
  * @group headless

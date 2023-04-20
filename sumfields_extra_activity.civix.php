@@ -6,13 +6,13 @@
  * The ExtensionUtil class provides small stubs for accessing resources of this
  * extension.
  */
-class CRM_SumfieldsAddonActivity_ExtensionUtil
+class CRM_SumfieldsExtraActivity_ExtensionUtil
 {
-    public const SHORT_NAME = 'sumfields_addon_activity';
+    const SHORT_NAME = 'sumfields_extra_activity';
 
-    public const LONG_NAME = 'sumfields-addon-activity';
+    const LONG_NAME = 'sumfields-extra-activity';
 
-    public const CLASS_PREFIX = 'CRM_SumfieldsAddonActivity';
+    const CLASS_PREFIX = 'CRM_SumfieldsExtraActivity';
 
     /**
      * Translate a string using the extension's domain.
@@ -88,14 +88,14 @@ class CRM_SumfieldsAddonActivity_ExtensionUtil
     }
 }
 
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+use CRM_SumfieldsExtraActivity_ExtensionUtil as E;
 
 /**
  * (Delegated) Implements hook_civicrm_config().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_config
  */
-function _sumfields_addon_activity_civix_civicrm_config(&$config = null)
+function _sumfields_extra_activity_civix_civicrm_config(&$config = null)
 {
     static $configured = false;
     if ($configured) {
@@ -129,7 +129,7 @@ function _sumfields_addon_activity_civix_civicrm_config(&$config = null)
  *
  * @return bool
  */
-function _sumfields_addon_activity_civix_insert_navigation_menu(&$menu, $path, $item)
+function _sumfields_extra_activity_civix_insert_navigation_menu(&$menu, $path, $item)
 {
     // If we are done going down the path, insert menu
     if (empty($path)) {
@@ -151,7 +151,7 @@ function _sumfields_addon_activity_civix_insert_navigation_menu(&$menu, $path, $
                 if (!isset($entry['child'])) {
                     $entry['child'] = [];
                 }
-                $found = _sumfields_addon_activity_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item);
+                $found = _sumfields_extra_activity_civix_insert_navigation_menu($entry['child'], implode('/', $path), $item);
             }
         }
 
@@ -162,10 +162,10 @@ function _sumfields_addon_activity_civix_insert_navigation_menu(&$menu, $path, $
 /**
  * (Delegated) Implements hook_civicrm_navigationMenu().
  */
-function _sumfields_addon_activity_civix_navigationMenu(&$nodes)
+function _sumfields_extra_activity_civix_navigationMenu(&$nodes)
 {
     if (!is_callable(['CRM_Core_BAO_Navigation', 'fixNavigationMenu'])) {
-        _sumfields_addon_activity_civix_fixNavigationMenu($nodes);
+        _sumfields_extra_activity_civix_fixNavigationMenu($nodes);
     }
 }
 
@@ -173,7 +173,7 @@ function _sumfields_addon_activity_civix_navigationMenu(&$nodes)
  * Given a navigation menu, generate navIDs for any items which are
  * missing them.
  */
-function _sumfields_addon_activity_civix_fixNavigationMenu(&$nodes)
+function _sumfields_extra_activity_civix_fixNavigationMenu(&$nodes)
 {
     $maxNavID = 1;
     array_walk_recursive($nodes, function ($item, $key) use (&$maxNavID) {
@@ -181,10 +181,10 @@ function _sumfields_addon_activity_civix_fixNavigationMenu(&$nodes)
             $maxNavID = max($maxNavID, $item);
         }
     });
-    _sumfields_addon_activity_civix_fixNavigationMenuItems($nodes, $maxNavID, null);
+    _sumfields_extra_activity_civix_fixNavigationMenuItems($nodes, $maxNavID, null);
 }
 
-function _sumfields_addon_activity_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID)
+function _sumfields_extra_activity_civix_fixNavigationMenuItems(&$nodes, &$maxNavID, $parentID)
 {
     $origKeys = array_keys($nodes);
     foreach ($origKeys as $origKey) {
@@ -200,7 +200,7 @@ function _sumfields_addon_activity_civix_fixNavigationMenuItems(&$nodes, &$maxNa
             $origKey = $newKey;
         }
         if (isset($nodes[$origKey]['child']) && is_array($nodes[$origKey]['child'])) {
-            _sumfields_addon_activity_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
+            _sumfields_extra_activity_civix_fixNavigationMenuItems($nodes[$origKey]['child'], $maxNavID, $nodes[$origKey]['attributes']['navID']);
         }
     }
 }

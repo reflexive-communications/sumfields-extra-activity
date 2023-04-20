@@ -1,6 +1,6 @@
 <?php
 
-namespace Civi\SumfieldsAddonActivity;
+namespace Civi\SumfieldsExtraActivity;
 
 /**
  * @group headless

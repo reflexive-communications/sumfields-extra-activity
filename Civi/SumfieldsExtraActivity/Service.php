@@ -1,11 +1,11 @@
 <?php
 
-namespace Civi\SumfieldsAddonActivity;
+namespace Civi\SumfieldsExtraActivity;
 
 use CRM_Activity_BAO_Activity;
 use CRM_Activity_BAO_ActivityContact;
 use CRM_Core_Smarty;
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+use CRM_SumfieldsExtraActivity_ExtensionUtil as E;
 use CRM_Utils_Array;
 
 class Service
