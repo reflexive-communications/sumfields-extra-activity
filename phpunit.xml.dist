@@ -17,8 +17,8 @@
             <!-- Skip test directory -->
             <directory>./tests</directory>
             <!-- Skip generated files -->
-            <file>./sumfields_addon_activity.php</file>
-            <file>./sumfields_addon_activity.civix.php</file>
+            <file>./sumfields_extra_activity.php</file>
+            <file>./sumfields_extra_activity.civix.php</file>
         </exclude>
     </coverage>
     <testsuites>

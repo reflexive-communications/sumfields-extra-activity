@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<extension key="sumfields-addon-activity" type="module">
-    <file>sumfields_addon_activity</file>
-    <name>Summary Fields for Activities</name>
+<extension key="sumfields-extra-activity" type="module">
+    <file>sumfields_extra_activity</file>
+    <name>Summary Fields - Extra (Activities)</name>
     <description>Summary fields for activities</description>
     <license>AGPL-3.0</license>
     <authors>
@@ -17,9 +17,9 @@
         </author>
     </authors>
     <urls>
-        <url desc="Main Extension Page">https://github.com/reflexive-communications/sumfields-addon-activity</url>
-        <url desc="Documentation">https://github.com/reflexive-communications/sumfields-addon-activity</url>
-        <url desc="Support">https://github.com/reflexive-communications/sumfields-addon-activity/issues</url>
+        <url desc="Main Extension Page">https://github.com/reflexive-communications/sumfields-extra-activity</url>
+        <url desc="Documentation">https://github.com/reflexive-communications/sumfields-extra-activity</url>
+        <url desc="Support">https://github.com/reflexive-communications/sumfields-extra-activity/issues</url>
         <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
     </urls>
     <releaseDate>2023-04-07</releaseDate>
@@ -38,7 +38,7 @@
     </classloader>
     <upgrader>CRM_SumfieldsExtraActivity_Upgrader</upgrader>
     <civix>
-        <namespace>CRM/SumfieldsAddonActivity</namespace>
+        <namespace>CRM/SumfieldsExtraActivity</namespace>
         <format>22.12.1</format>
     </civix>
 </extension>
