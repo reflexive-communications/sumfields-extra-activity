@@ -1,6 +1,6 @@
 <?php
 
-namespace Civi\SumfieldsAddonActivity;
+namespace Civi\SumfieldsExtraActivity;
 
 use Civi\Test;
 use Civi\Test\HeadlessInterface;

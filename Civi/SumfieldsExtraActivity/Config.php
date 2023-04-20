@@ -1,6 +1,6 @@
 <?php
 
-namespace Civi\SumfieldsAddonActivity;
+namespace Civi\SumfieldsExtraActivity;
 
 use CRM_Core_Exception;
 use CRM_RcBase_Config;

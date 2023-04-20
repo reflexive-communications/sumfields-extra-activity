@@ -1,12 +1,12 @@
 <?php
 
-namespace Civi\SumfieldsAddonActivity;
+namespace Civi\SumfieldsExtraActivity;
 
 use Civi\Api4\Activity;
 use Civi\Api4\Contact;
 use Civi\Api4\CustomField;
 use Civi\RcBase\Utils\DB;
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+use CRM_SumfieldsExtraActivity_ExtensionUtil as E;
 
 /**
  * @group headless

@@ -6,7 +6,7 @@
  * The ExtensionUtil class provides small stubs for accessing resources of this
  * extension.
  */
-class CRM_SumfieldsAddonActivity_ExtensionUtil
+class CRM_SumfieldsExtraActivity_ExtensionUtil
 {
     public const SHORT_NAME = 'sumfields_addon_activity';
 
@@ -88,7 +88,7 @@ class CRM_SumfieldsAddonActivity_ExtensionUtil
     }
 }
 
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+use CRM_SumfieldsExtraActivity_ExtensionUtil as E;
 
 /**
  * (Delegated) Implements hook_civicrm_config().

@@ -1,6 +1,6 @@
 <?php
 
-use Civi\SumfieldsAddonActivity\Service;
+use Civi\SumfieldsExtraActivity\Service;
 
 require_once 'sumfields_addon_activity.civix.php';
 

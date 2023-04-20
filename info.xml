@@ -36,7 +36,7 @@
         <psr0 prefix="CRM_" path=""/>
         <psr4 prefix="Civi\" path="Civi"/>
     </classloader>
-    <upgrader>CRM_SumfieldsAddonActivity_Upgrader</upgrader>
+    <upgrader>CRM_SumfieldsExtraActivity_Upgrader</upgrader>
     <civix>
         <namespace>CRM/SumfieldsAddonActivity</namespace>
         <format>22.12.1</format>

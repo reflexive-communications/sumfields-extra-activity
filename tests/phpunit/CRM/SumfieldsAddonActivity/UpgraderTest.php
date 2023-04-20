@@ -1,8 +1,8 @@
 <?php
 
-use Civi\SumfieldsAddonActivity\Config;
-use Civi\SumfieldsAddonActivity\HeadlessTestCase;
-use CRM_SumfieldsAddonActivity_ExtensionUtil as E;
+use Civi\SumfieldsExtraActivity\Config;
+use Civi\SumfieldsExtraActivity\HeadlessTestCase;
+use CRM_SumfieldsExtraActivity_ExtensionUtil as E;
 
 /**
  * @group headless
@@ -15,7 +15,7 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
      */
     public function testInstall()
     {
-        $installer = new CRM_SumfieldsAddonActivity_Upgrader();
+        $installer = new CRM_SumfieldsExtraActivity_Upgrader();
         self::assertEmpty($installer->install());
     }
 
@@ -25,7 +25,7 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
      */
     public function testUninstall()
     {
-        $installer = new CRM_SumfieldsAddonActivity_Upgrader();
+        $installer = new CRM_SumfieldsExtraActivity_Upgrader();
         self::assertEmpty($installer->install());
         self::assertEmpty($installer->uninstall());
     }
@@ -36,7 +36,7 @@ class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
      */
     public function testUpdate5100()
     {
-        $installer = new CRM_SumfieldsAddonActivity_Upgrader();
+        $installer = new CRM_SumfieldsExtraActivity_Upgrader();
         self::assertEmpty($installer->install());
         $config = new Config(E::LONG_NAME);
         $config->load();
