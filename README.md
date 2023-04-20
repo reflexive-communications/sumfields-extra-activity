@@ -1,4 +1,4 @@
-# sumfields-addon-extra
+# sumfields-extra-activity
 
 [![CI](https://github.com/reflexive-communications/sumfields-extra-activity/actions/workflows/main.yml/badge.svg)](https://github.com/reflexive-communications/sumfields-extra-activity/actions/workflows/main.yml)
 
