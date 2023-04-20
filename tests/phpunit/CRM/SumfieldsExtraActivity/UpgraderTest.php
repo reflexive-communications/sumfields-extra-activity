@@ -7,7 +7,7 @@ use CRM_SumfieldsExtraActivity_ExtensionUtil as E;
 /**
  * @group headless
  */
-class CRM_SumfieldsAddonActivity_UpgraderTest extends HeadlessTestCase
+class CRM_SumfieldsExtraActivity_UpgraderTest extends HeadlessTestCase
 {
     /**
      * @return void
