@@ -42,7 +42,7 @@ class CRM_SumfieldsExtraActivity_Upgrader extends CRM_Extension_Upgrader_Base
      * @return bool
      * @throws CRM_Core_Exception
      */
-    public function upgrade_5100(): bool
+    public function upgrade_2010(): bool
     {
         $config = new Config(E::LONG_NAME);
         $default = $config->defaultConfiguration();
