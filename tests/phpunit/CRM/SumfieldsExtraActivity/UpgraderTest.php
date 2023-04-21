@@ -34,7 +34,7 @@ class CRM_SumfieldsExtraActivity_UpgraderTest extends HeadlessTestCase
      * @return void
      * @throws \CRM_Core_Exception
      */
-    public function testUpdate5100()
+    public function testUpdate2010()
     {
         $installer = new CRM_SumfieldsExtraActivity_Upgrader();
         self::assertEmpty($installer->install());
@@ -46,7 +46,7 @@ class CRM_SumfieldsExtraActivity_UpgraderTest extends HeadlessTestCase
             unset($$newConfig);
         }
         $config->update($cfg);
-        self::assertTrue($installer->upgrade_5100());
+        self::assertTrue($installer->upgrade_2010());
         $config->load();
         $defaultConfig = $config->defaultConfiguration();
         $currentConfig = $config->get();
