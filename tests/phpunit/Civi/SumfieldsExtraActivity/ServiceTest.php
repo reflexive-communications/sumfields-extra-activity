@@ -79,7 +79,7 @@ class ServiceTest extends HeadlessTestCase
             'activity_sumfields_date_activity_status_ids' => $expectedActivityStatusIds,
             'activity_sumfields_date_record_type_id' => $expectedContactRecortId,
         ];
-        $form->setVar('_submitValues', $submit);
+        $form->_submitValues = $submit;
         self::assertEmpty(Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
     }
 
@@ -102,7 +102,7 @@ class ServiceTest extends HeadlessTestCase
             'activity_sumfields_date_activity_status_ids' => $expectedActivityStatusIds,
             'activity_sumfields_date_record_type_id' => $expectedContactRecortId,
         ];
-        $form->setVar('_submitValues', $submit);
+        $form->_submitValues = $submit;
         self::assertEmpty(Service::postProcess(CRM_Sumfields_Form_SumFields::class, $form));
         $config = new Config(E::LONG_NAME);
         self::assertSame($expectedActivityTypeIds, $config->getSetting('activity_sumfields_activity_type_ids'));
