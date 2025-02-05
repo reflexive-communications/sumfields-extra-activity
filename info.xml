@@ -22,11 +22,11 @@
         <url desc="Support">https://github.com/reflexive-communications/sumfields-extra-activity/issues</url>
         <url desc="Licensing">https://www.gnu.org/licenses/agpl-3.0.html</url>
     </urls>
-    <releaseDate>2023-04-21</releaseDate>
-    <version>2.2.0</version>
+    <releaseDate>2025-02-05</releaseDate>
+    <version>2.3.0</version>
     <develStage>stable</develStage>
     <compatibility>
-        <ver>5.43</ver>
+        <ver>5.76</ver>
     </compatibility>
     <requires>
         <ext>net.ourpowerbase.sumfields</ext>
@@ -36,9 +36,9 @@
         <psr0 prefix="CRM_" path=""/>
         <psr4 prefix="Civi\" path="Civi"/>
     </classloader>
-    <upgrader>CRM_SumfieldsExtraActivity_Upgrader</upgrader>
+    <upgrader>CiviMix\Schema\SumfieldsExtraActivity\AutomaticUpgrader</upgrader>
     <civix>
         <namespace>CRM/SumfieldsExtraActivity</namespace>
-        <format>22.12.1</format>
+        <format>24.09.1</format>
     </civix>
 </extension>

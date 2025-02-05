@@ -9,10 +9,10 @@ The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
 ## Requirements
 
--   PHP v7.4+
--   CiviCRM v5.43+
--   net.ourpowerbase.sumfields
--   rc-base
+- PHP v7.4+
+- CiviCRM v5.76+
+- net.ourpowerbase.sumfields
+- rc-base
 
 ## Installation
 
