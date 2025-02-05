@@ -46,7 +46,7 @@ class Service
             'contact-record-type-desc' => E::ts('Recory type to be used when calculating activity summary fields.'),
         ];
         $tpl = CRM_Core_Smarty::singleton();
-        $fieldsets = $tpl->_tpl_vars['fieldsets'];
+        $fieldsets = $tpl->getTemplateVars('fieldsets');
 
         // Get definitions, because we need the fieldset names as a target
         // for where to insert our option fields
