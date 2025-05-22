@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/reflexive-communications/sumfields-extra-activity/actions/workflows/main.yml/badge.svg)](https://github.com/reflexive-communications/sumfields-extra-activity/actions/workflows/main.yml)
 
+**THIS REPO HAS BEEN ARCHIVED!**
+
 This extension provides additional summary fields for calculating the number of activities in the given last n days, and the date of the last activity.
 The type and status of activities and the role of the contact can be configured.
 
